@@ -50,18 +50,18 @@ class BinaryTree:
         if node.RC != None:  
             self.find_Node(node.RC , value)
         
-    def delete(self  , node : Tree , value):
-        if self.root == None:
-            return  
-        if node == None:
-            node = self.root 
-        if node.LC != None: 
-            self.delete(node.LC , value )
-        if node.Data == value:
-            node = node.RC
-        if node.RC != None:  
-            self.delete(node.RC , value )
-    
+    # def delete(self  , node : Tree , value):
+    #     if self.root == None:
+    #         return  
+    #     if node == None:
+    #         node = self.root 
+    #     if node.LC != None: 
+    #         self.delete(node.LC , value )
+    #     if node.Data == value:
+    #         node = node.RC
+    #     if node.RC != None:  
+    #         self.delete(node.RC , value )
+    # this method does not work 
     def get_height(self):
             return BinaryTree.get_height(self.root)
     @staticmethod

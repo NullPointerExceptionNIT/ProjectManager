@@ -11,7 +11,7 @@ class DoubleNode:
 
 class LinkedList:
     def __init__(self):
-        self.L = None
+        self.L = None # L is head  
 
     def insert_at_front(self, value):
         new_node = Node(value)
@@ -65,7 +65,7 @@ class LinkedList:
         while temp:
             print(temp.Data, end="-")
             temp = temp.Next
-        print("None")
+        # print("None")
 
     def reverse_recursive(self, current = None , prev = None):
         if current is None:  
