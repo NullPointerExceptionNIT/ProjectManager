@@ -1,36 +1,36 @@
-from BinaryTreeForHashMap import *
+from BinaryTreeForHashMap import BinaryTree
 class Hashmap:
     def __init__(self , size): #size = مبنای کار 
         self.size = size
         self.array = [None] * size
         for i in range(size):
-            self.array[i] = BinaryTree()
+            self.array[i]  : BinaryTree = BinaryTree()
             
     def check(self , number):
         return number % self.size
     
-    def Add_Project(self , project , key):
+    def Add(self , value , key):
         new_key = self.check(key)
-        if project is None:
-            print("project is empty")
+        if value is None:
+            raise Exception("value is empty")
         else:
-            self.array[new_key].insert(project , key)
+            self.array[new_key].insert(value , key)
         
-    def get_Project(self , key):
+    def get(self , key):
         new_key = self.check(key)
-        return self.array[new_key].search_Project(key)
+        return self.array[new_key].search(key)
     
-    def delete_Project(self , key):
+    def delete(self , key):
         new_key = self.check(key)
         return self.array[new_key].delete(key)
     
-    def update_Project(self ,project ,key):
+    def update(self ,value ,key):
         new_key = self.check(key)
-        return self.array[new_key].update(project ,key)
+        return self.array[new_key].update(value ,key)
     
-    def has_Project(self, key):
+    def has(self, key):
         new_key = self.check(key)
-        result = self.array[new_key].search_Project(key)
+        result = self.array[new_key].search(key)
         if result is not None:
             return True
         else:

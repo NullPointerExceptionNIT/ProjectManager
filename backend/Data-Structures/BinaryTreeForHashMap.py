@@ -9,18 +9,18 @@ class BinaryTree:
         self.root = Node_Tree() 
     
     def insert(self , value, Key_index , node : Node_Tree = None):
-        if self.root.Data == None:
+        if self.root.Data is None:
             self.root.Data = value
             self.root.Key = Key_index
             return
-        if node == None:
+        if node is None:
             node = self.root
         if Key_index == node.Key:
             node.Key = Key_index
             node.Data = value
             return
         elif Key_index < node.Key:
-            if node.LC == None:
+            if node.LC is None:
                 new_node = Node_Tree()
                 new_node.Key = Key_index
                 new_node.Data = value
@@ -28,7 +28,7 @@ class BinaryTree:
             else:
                 self.insert(value , Key_index ,  node.LC)
         else:
-            if node.RC == None:
+            if node.RC is None:
                 new_node = Node_Tree()
                 new_node.Key = Key_index
                 new_node.Data = value
@@ -38,7 +38,7 @@ class BinaryTree:
         
         return node
     
-    def search_Project(self , key ,node : Node_Tree = None):
+    def search(self , key ,node : Node_Tree = None):
         if node is None:
             node = self.root
         if node is None:
@@ -46,17 +46,17 @@ class BinaryTree:
         if key == node.Key:
             return node.Data
         elif key < node.Key and node.LC:
-            return self.search_Project(key, node.LC)
+            return self.search(key, node.LC)
         elif key > node.Key and node.RC:
-            return self.search_Project(key, node.RC)
+            return self.search(key, node.RC)
         else:
             return None 
         
     def update(self , value, Key_index , node : Node_Tree = None):
-        if self.root.Data == None:
+        if self.root.Data is None:
             self.root.Data = value
             return
-        if node == None:
+        if node is None:
             node = self.root
         if Key_index == node.Key:
             node.Data = value
