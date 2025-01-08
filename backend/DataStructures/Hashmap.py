@@ -7,7 +7,7 @@ class Hashmap:
             self.array[i] = BinaryTree()
                     
     def checker(self , number):
-        return number.__hash__ % self.size
+        return number.__hash__() % self.size
     
     def Add(self , value , key):
         new_key = self.checker(key)
@@ -18,7 +18,7 @@ class Hashmap:
         
     def get(self , key):
         new_key = self.checker(key)
-        return self.array[new_key].search(key)
+        return self.array[new_key].find(key)
     
     def delete(self , key):
         new_key = self.checker(key)
@@ -30,7 +30,7 @@ class Hashmap:
     
     def has(self, key):
         new_key = self.checker(key)
-        result = self.array[new_key].search(key)
+        result = self.array[new_key].find(key)
         if result is not None:
             return True
         else:

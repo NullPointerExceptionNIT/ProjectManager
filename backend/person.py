@@ -1,10 +1,10 @@
 class person:
     
-    def __init__(self , username : str, email : str):
+    def __init__(self , username : str, email : str,hashed_password:str):
         self.username = username
         self.email = email
         self.key = "username"
-        self.password : object 
+        self.hashed_password : object = hashed_password
         self.skills : list # witch data structure ????
         self.Work_history : list # witch data structure ????
         self.Different_roles : str #maneger or boss or user!!! 

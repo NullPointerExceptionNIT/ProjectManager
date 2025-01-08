@@ -1,118 +1,190 @@
-class Node_Tree:
-    LC : object = None
-    RC : object = None
-    Key : object = None
-    Data : object = None
+class TreeNode:
+    key : object
+    value : object
+    lc : object
+    rc : object
+    def __init__(self,key,value):
+        self.key = key
+        self.value = value
+        self.lc = None
+        self.rc = None
 
 class BinaryTree:
-    def __init__(self):
-        self.root = Node_Tree() 
-    
-    def insert(self , value, Key_index , node : Node_Tree = None):
-        if self.root.Data is None:
-            self.root.Data = value
-            self.root.Key = Key_index
-            return
-        if node is None:
-            node = self.root
-        if Key_index == node.Key:
-            node.Key = Key_index
-            node.Data = value
-            return
-        elif Key_index < node.Key:
-            if node.LC is None:
-                new_node = Node_Tree()
-                new_node.Key = Key_index
-                new_node.Data = value
-                node.LC = new_node
-            else:
-                self.insert(value , Key_index ,  node.LC)
+    __root : TreeNode
+    def __init__(self, root=None):
+        self.__root = root
+    def insert(self, value, key):
+        newNode = TreeNode(key, value)
+        if self.__root == None:
+            self.__root = newNode
         else:
-            if node.RC is None:
-                new_node = Node_Tree()
-                new_node.Key = Key_index
-                new_node.Data = value
-                node.RC = new_node
-            else:
-                self.insert(value , Key_index , node.RC)
-        
-        return node
-    
-    def search(self , key ,node : Node_Tree = None):
-        if node is None:
-            node = self.root
-        if node is None:
-            return None
-        if key == node.Key:
-            return node.Data
-        elif key < node.Key and node.LC:
-            return self.search(key, node.LC)
-        elif key > node.Key and node.RC:
-            return self.search(key, node.RC)
-        else:
-            return None 
-        
-    def update(self , value, Key_index , node : Node_Tree = None):
-        if self.root.Data is None:
-            self.root.Data = value
-            return
-        if node is None:
-            node = self.root
-        if Key_index == node.Key:
-            node.Data = value
-            return
-        self.insert(value , Key_index ,  node.LC)
-        self.insert(value , Key_index , node.RC)
-        return node
-    
-    def delete(self , key ,node : Node_Tree = None , parent : Node_Tree = None ):
-        if node == None:
-            node = self.root
-        if node == None:
-            return None  
-        if key < node.Key:
-            self.delete(key, node.LC, node)
-        elif key > node.Key:
-            self.delete(key, node.RC, node)
-        else:
-            if node.LC == node.RC != None: 
-                temp = self.find_min(node.RC)
-                node.Key, node.Data = temp.Key, temp.Data
-                self.delete(temp.Key, node.RC, node)
-            elif parent != None:
-                if node == parent.LC:
-                    parent.LC = node.LC or node.RC
-                elif node == parent.RC:
-                    parent.RC = node.LC or node.RC
-            else:
-                self.root = node.LC or node.RC
-    def find_min(self, node :Node_Tree):
-        while node.LC:
-            node = node.LC
-        return node
-                
-    def inorder(self, node=None, result=None):
-        if result is None:
-            result = []
-        if node is None:
-            node = self.root
-        if node.LC:
-            self.inorder(node.LC, result)
-        result.append(node.Data)
-        if node.RC:
-            self.inorder(node.RC, result)
-        return result
-    
-    def print_tree_by_keys(self, node=None, result=None):
-        if result is None:
-            result = []
-        if node is None:
-            node = self.root
-        if node.LC:
-            self.print_tree_by_keys(node.LC, result)
-        result.append((node.Key, node.Data)) 
-        if node.RC:
-            self.print_tree_by_keys(node.RC, result)
-        return result
+            root=self.__root
+            while True:
+                if key < root.key:
+                    if root.lc == None:
+                        root.lc = newNode
+                        break
+                    else:
+                        root = root.lc
+                else:
+                    if root.rc == None:
+                        root.rc = newNode
+                        break
+                    else:
+                        root = root.rc
 
+    def lmc(self):
+        return BinaryTree.LMC(self.__root)
+    @staticmethod
+    def LMC(tree):
+        if tree == None:
+            return None
+        if tree.lc:
+            return BinaryTree.LMC(tree.lc)
+        if tree.rc:
+            return BinaryTree.LMC(tree.rc)
+        return tree
+    def find_node(self, key):
+        return BinaryTree.Find_Node(self.__root, key)
+    def find(self, key):
+        node = BinaryTree.Find_Node(self.__root, key)
+        if node:
+            return node.value
+        return None
+    @staticmethod
+    def Find_Node(tree:TreeNode,key):
+        return_node = None
+        if tree == None:
+            return None
+        if tree.key == key :
+            return tree
+        if tree.lc:
+            if tree.lc.key == key:
+                return tree.lc
+            else:
+                return_node = BinaryTree.Find_Node(tree.lc,key)
+                if return_node:
+                    return return_node
+        if tree.rc:
+            if tree.rc.key == key:
+                return tree.rc
+            else:
+                return_node = BinaryTree.Find_Node(tree.rc,key)
+                if return_node:
+                    return return_node
+        return None
     
+    def get_size(self):
+        return BinaryTree.Get_Size(self.__root)
+    @staticmethod
+    def Get_Size(tree):
+        if tree == None:
+            return 0
+        return 1 + BinaryTree.Get_Size(tree.lc) + BinaryTree.Get_Size(tree.rc)
+   
+    def get_height(self):
+        return BinaryTreen.Get_Height(self.__root)
+    @staticmethod
+    def Get_Height(tree):
+        if tree == None:
+            return 0
+        return 1 + max(BinaryTree.Get_Height(tree.lc) , BinaryTree.Get_Height(tree.rc))
+    
+    def parent(self,node):
+        if node == self.__root:
+            return None
+        return BinaryTree.Parent(self.__root, node)
+    @staticmethod
+    def Parent(tree,node):
+        if tree == None:
+            return None
+        returnval = None
+        if tree.lc:
+            if tree.lc == node:
+                return tree
+            returnval = BinaryTree.Parent(tree.lc, node)
+            if returnval:
+                return returnval
+        if tree.rc:
+            if tree.rc == node:
+                return tree
+            returnval = BinaryTree.Parent(tree.rc, node)
+            if returnval:
+                return returnval
+        return None
+    
+    def delete(self, node):
+        parent_node = self.parent(node)
+        if parent_node == None:
+            self.__root = None
+            return
+        child = None
+        if parent_node.lc == node:
+            child = parent_node.lc
+        else:
+            child = parent_node.rc
+        if node.lc or node.rc:
+            if node.rc:
+                child= node.rc
+            else:
+                child= node.lc
+        if node.lc and node.rc:
+            BinaryTree.lmc(parent_node).lc=node.lc
+    
+    def print_preorder(self):
+        BinaryTree.Print_PreOrder(self.__root)
+    @staticmethod
+    def Print_PreOrder(tree):
+        if tree == None:
+            return
+        print(tree.key, end=" ")
+        BinaryTree.Print_PreOrder(tree.lc)
+        BinaryTree.Print_PreOrder(tree.rc)
+    
+    def print_postorder(self):
+        BinaryTree.Print_PostOrder(self.__root)
+    @staticmethod
+    def Print_PostOrder(tree):
+        if tree == None:
+            return
+        BinaryTree.Print_PostOrder(tree.lc)
+        BinaryTree.Print_PostOrder(tree.rc)
+        print(tree.key, end=" ")
+    
+    def print_inorder(self):
+        BinaryTree.Print_InOrder(self.__root)
+    @staticmethod
+    def Print_InOrder(tree):
+        if tree == None:
+            return
+        BinaryTree.Print_InOrder(tree.lc)
+        print(tree.key, end=" ")
+        BinaryTree.Print_InOrder(tree.rc)
+    
+    @staticmethod
+    def create_tree(inorder: list, postorder: list,first_time=True):
+        if not inorder or not postorder:
+            return None
+        root_value = postorder[-1]
+        root = TreeNode(root_value)
+        root_index = inorder.index(root_value)
+        right_subtree_length = len(inorder) - root_index - 1
+
+        left_postorder = postorder[:len(postorder) - right_subtree_length - 1]
+        right_postorder = postorder[len(postorder) - right_subtree_length - 1:-1]
+
+        root.rc = BinaryTree.create_tree(inorder[root_index + 1:], right_postorder,False)
+        root.lc = BinaryTree.create_tree(inorder[:root_index], left_postorder,False)
+
+        if first_time:
+            return Tree(root)
+        else:
+            return root
+
+
+
+
+if __name__ == '__main__':
+    a= BinaryTree ()
+    a.insert("asd","asd")
+    print(a.find("asd"))
