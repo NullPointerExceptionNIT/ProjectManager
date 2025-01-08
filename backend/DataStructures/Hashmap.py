@@ -1,11 +1,10 @@
-from BinaryTreeForHashMap import BinaryTree
+from DataStructures.BinaryTreeForHashMap import BinaryTree
 class Hashmap:
     def __init__(self , size): #size = مبنای کار 
         self.size = size
         self.array = [None] * size
         for i in range(size):
-            self.array[i]  : BinaryTree = BinaryTree()
-            
+            self.array[i] = BinaryTree()            
     def check(self , number):
         return number % self.size
     
