@@ -1,14 +1,13 @@
 class person:
     
-    def __init__(self , name : str, email : str):
-        self.id : int = 1
-        self.name = name
+    def __init__(self , username : str, email : str):
+        self.username = username
         self.email = email
+        self.key = "username"
         self.password : object 
         self.skills : list # witch data structure ????
         self.Work_history : list # witch data structure ????
-        self.Different_roles : str
-        
+        self.Different_roles : str #maneger or boss or user!!! 
         
     # def updateName(self , new_name):
     #     self.name = new_name
@@ -28,5 +27,5 @@ class person:
     def addWorkHistory(self , new_work):
         self.Work_history.append(new_work)    
         
-    def Request_entry(self , name , email , Pass): #Data base??? 
+    def Request_entry(self , username , email , Pass): #Data base??? 
         pass    
