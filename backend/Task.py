@@ -1,20 +1,18 @@
-from DataStructures.HashmapWrapper import HashmapW
-from DataStructures.Stack import Stack
+from DataStructures.Stackwrapper import stack as Stack
 from person import person
 import datetime
 
 class Task:
-    def __init__(self, name , sizeOfPeople, endtime):
-        self.topic = name
+    def __init__(self):
+        self.topic : str
         self.member: person 
         self.status: str = "ready"
-        self.startTime = self.getLiveTime()
-        self.endTime = endtime  # از فرانت چجوری میاد؟؟؟
-        self.realendtime: datetime.datetime
-        self.chat: Stack  # comment
+        self.startTime : str
+        self.endTime : str
+        self.realendtime: datetime.datetime # اگه دیر یارو انجام داد کار رو
+        self.chat : Stack = Stack()  # comment
 
-    def getLiveTime(self):
-        return datetime.datetime.now()
+    
 
                 
     def change_status(self, new_status: str):

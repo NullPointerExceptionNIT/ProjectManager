@@ -1,21 +1,28 @@
 from Task import Task
-from person import person
 from DataStructures.HashmapWrapper import HashmapW
+import datetime
+
 class project:
     
     def __init__(self , number):
         self.task : HashmapW = HashmapW(number)
+        self.description : str
+        self.startTime = self.getLiveTime()
+        self.endTime : str
+        
+    def getLiveTime(self):
+        return datetime.datetime.now()    
         
         
     
-    def add_member(self, new_member: person):
-        self.member.add(new_member)
+    def add_task(self, new_task: Task):
+        self.task.add(new_task)
 
-    def delete_member(self, member: person):
-        self.member.delete(member)
+    def delete_task(self, new_task: Task):
+        self.task.delete(new_task)
 
-    def update_member(self, member : person):
-        self.member.update(member)
+    def update_task(self, new_task : Task):
+        self.task.update(new_task)
     
-    def get_member(self , id):
-        self.member.get(id)
+    def get_task(self , id):
+        self.task.get(id)

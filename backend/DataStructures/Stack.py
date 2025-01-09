@@ -33,9 +33,9 @@ class Stack:
         
     def peek(self):
         temp = self.top
-        while(temp.Next != None):
-            if temp.Data != None:
-                print(temp.Data)
+        while temp:
+            if temp.Data is not None:
+                print(temp.Data , end = " ")
             temp = temp.Next
                 
     def empty(self):
@@ -52,4 +52,4 @@ class Stack:
             current.Next = prev
             prev = current
             current = next_node
-        self.L = prev
+        self.top = prev
