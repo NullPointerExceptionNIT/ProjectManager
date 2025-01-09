@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA&display=swap" rel="stylesheet">
+    <style>
+        .font-playwrite {
+            font-family: 'Playwrite AU SA', sans-serif;
+        }
+        .text-xxl {
+            font-size: 2rem; 
+        }
+    </style>
+</head>
+<body class="bg-white h-screen overflow-hidden">
+
+    <header class="flex justify-between items-center bg-red-50 shadow">
+        <div class="flex items-center">
+            <img src="project-manager-logo.png" alt="Logo" class="h-20 mr-2"> 
+            <h1 class="font-bold text-xxl font-playwrite">Task Manager</h1>
+        </div>
+        <div class="flex space-x-2 mr-5">
+            <a href="LoginPage.html" class="text-red-500 hover:underline">Login</a>
+            <a class="text-red-500">/</a>
+            <a href="SignUp.html" class="text-red-500 hover:underline">Sign Up</a>
+        </div>
+    </header>
+
+    <main class="flex flex-col md:flex-row">
+        <div class="md:w-1/2">
+            <h2 class="text-2xl font-semibold m-10">Keep your teams running smoothly with Task Manager agent workspace software</h2>
+            <p class="text-gray-700 m-10">
+                Boost employee satisfaction and efficiency with time-saving automations and Task Manager features that handle repetitive tasks to free up agent workflows.
+            </p>
+        </div>
+        <div class="md:w-1/2 flex justify-center items-center">
+            <img src="Main.png" alt="Task Manager" class="w-full h-auto max-w-md"> 
+        </div>
+        <div class="absolute mb-10 bottom-20 left-10 w-full">
+            <a href="SignUp.html" class="bg-red-300 text-black text-center px-4 py-2 rounded hover:bg-red-400 transition duration-200 w-64 inline-block">
+                Let's Start
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>
