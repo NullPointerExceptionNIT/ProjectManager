@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA&display=swap" rel="stylesheet">
+    <style>
+        .font-playwrite {
+            font-family: 'Playwrite AU SA', sans-serif;
+        }
+        .text-xxl {
+            font-size: 2rem; 
+        }
+    </style>
 </head>
 <body class="bg-white h-screen overflow-hidden">
 
     <header class="flex justify-between items-center bg-red-50 shadow">
         <div class="flex items-center">
             <img src="project-manager-logo.png" alt="Logo" class="h-20 mr-2"> 
-            <h1 class="text-xl font-bold">Task Manager</h1>
+            <h1 class="font-bold text-xxl font-playwrite">Task Manager</h1>
         </div>
         <div class="flex space-x-2 mr-5">
             <a href="LoginPage.html" class="text-red-500 hover:underline">Login</a>
