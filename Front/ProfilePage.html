@@ -89,7 +89,12 @@
                 </div>
             </form>
         </div>
-        <button id="changeButton" class="bg-red-200 text-black h-16 m-2 px-4 py-2 rounded hover:bg-red-300">Change</button>
+        <div class="flex flex-col items-start">
+            <button id="changeButton" class="bg-red-200 text-black h-16 w-20 m-2 px-4 py-2 rounded hover:bg-red-300">Change</button>
+            <button id="backButton" class="bg-red-200 text-black h-16 w-20 m-2 px-4 py-2 rounded hover:bg-red-300">
+                <a href="ProjectPage.html" class="block">Back</a>
+            </button>
+        </div>
     </div>
     <script>
             const toggleOldPassword = document.getElementById('toggleOldPassword');
