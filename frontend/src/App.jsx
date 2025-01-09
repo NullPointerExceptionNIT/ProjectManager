@@ -3,6 +3,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import Home from './Home'
 import Signup from './Signup';
 import Login from './login';
+import ProjectPage from './ProjectPage';
 function App() {
 
   return (
@@ -12,6 +13,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/Signup" element={<Signup />} />
             <Route path="/Login" element={<Login />} />
+            <Route path="/ProjectPage" element={<ProjectPage />} />
           </Routes>
       </AuthProvider>
     </Router>
