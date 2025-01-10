@@ -9,9 +9,9 @@ const Header =()=>{
                     <h1 className="tex-center font-bold text-xxl font-playwrite">Task Manager</h1>
                 </div>
                 <div className="flex space-x-2 mr-5">
-                    <a href="LoginPage.html" className="text-red-500 hover:underline">Login</a>
+                    <a href="Login" className="text-red-500 hover:underline">Login</a>
                     <a className="text-red-500">/</a>
-                    <a href="SignUp.html" className="text-red-500 hover:underline">Sign Up</a>
+                    <a href="SignUp" className="text-red-500 hover:underline">Sign Up</a>
                 </div>
             </header>
     )

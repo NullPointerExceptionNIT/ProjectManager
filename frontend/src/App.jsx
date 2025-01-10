@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Home from './Home'
 import Signup from './Signup';
-import Login from './login';
+import Login from './Login';
 import ProjectPage from './ProjectPage';
 import ProfilePage from './ProfilePage';
 
