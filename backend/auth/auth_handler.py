@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 
 from schemas import TokenData
 from ProjectManager import ProjectManager
+from Person import Person
 
 pm = ProjectManager()
 
@@ -76,4 +77,14 @@ async def get_current_user(token: str = Depends(oauth2_scheme), users = Depends(
 
 
 async def get_current_active_user(current_user = Depends(get_current_user)):
+    return current_user
+
+async def get_current_active_member(current_user : Person = Depends(get_current_user)):
+    if (current_user.role<1):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="You Don't have permission to do this")
+    return current_user
+
+async def get_current_active_ProjectManager(current_user : Person = Depends(get_current_user)):
+    if (current_user.role<2):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="You Don't have permission to do this")
     return current_user
