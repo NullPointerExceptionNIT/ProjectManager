@@ -10,6 +10,7 @@ function Login() {
         username: '',
         password: ''
     });
+    const [failed, setfailed] = useState(false);
 
     const { login, user } = useContext(AuthContext);
 
@@ -22,7 +23,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        login(formData.username, formData.password);
+        setfailed(login(formData.username, formData.password));
     };
     return (
         <div style={{ backgroundImage: `url(${background})` }}>
@@ -52,6 +53,20 @@ function Login() {
                         <button type="submit" className="bg-red-500 text-white rounded px-4 py-2 mt-2 w-full"><a href="ProjectPage.html">Enter</a></button>
                     </form>
                     <h5 className="text-center mt-3 text-gray-700">Not a member? <a href="SignUp.html" className="text-red-400">Sign up</a></h5>
+                    {failed && <div role="alert" className="alert alert-error">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6 shrink-0 stroke-current"
+                            fill="none"
+                            viewBox="0 0 24 24">
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Error! Task failed successfully.</span>
+                    </div>}
                 </div>
             </div>
         </div>

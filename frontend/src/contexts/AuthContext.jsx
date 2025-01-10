@@ -30,8 +30,9 @@ const AuthProvider = ({ children }) => {
             localStorage.setItem('token', response.access_token);
             const userProfile = await fetchUserProfile(response.access_token);
             setUser(userProfile);
-            navigate('/');
+            return true;
         }
+        return false
     };
 
     const register = async (username, email, password,skills,experience) => {
