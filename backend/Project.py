@@ -2,7 +2,7 @@ from Task import Task
 from DataStructures.HashmapWrapper import HashmapW
 import datetime
 
-class project:
+class Project:
     
     def __init__(self , number):
         self.task : HashmapW = HashmapW(number)

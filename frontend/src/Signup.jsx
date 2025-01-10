@@ -5,6 +5,8 @@ import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from './contexts/AuthContext'
 function Signup() {
+    const [failed, setfailed] = useState(false);
+    const [error_message, seterror_message] = useState();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
@@ -19,7 +21,18 @@ function Signup() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        register(formData.username, formData.email, formData.password, formData.skills, formData.experience);
+        register(formData.username, formData.email, formData.password, formData.skills, formData.experience).catch((result) => {
+            console.log("asdasd")
+            console.log(result)
+            setfailed(true)
+            let msg;
+            try {
+                msg = result.response.data.detail[0].msg
+            } catch (error) {
+                msg = "Unknown error"
+            }
+            seterror_message(msg)
+        });
     };
     if (user != null)
         navigate("/");
@@ -71,9 +84,23 @@ function Signup() {
                                 <label htmlFor="experience className='color-black'">Experience:</label>
                                 <textarea id="experience" className="bg-white mb-4 resize-none form-control w-full p-2 border border-gray-300 rounded" name="experience" onChange={handleChange} placeholder="Describe your work experience"></textarea>
 
-                                <button id="enterButton" className="bg-red-500 text-white rounded px-4 py-1 mt-3 w-full block text-center"><a href="ProjectPage.html">Enter</a></button>
-                                <h5 className="text-center mt-2 text-gray-700">Already a member? <a href="LoginPage.html" className="text-red-400">Login</a></h5>
+                                <button id="enterButton" className="bg-red-500 text-white rounded px-4 py-1 mt-3 w-full block text-center"><a>Enter</a></button>
+                                <h5 className="text-center mt-2 text-gray-700">Already a member? <a href="Login" className="text-red-400">Login</a></h5>
                             </form>
+                            {failed && <div role="alert" className="alert alert-error">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-6 w-6 shrink-0 stroke-current"
+                                    fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>Error! {error_message}</span>
+                            </div>}
                         </div>
                     </div>
                 </div>

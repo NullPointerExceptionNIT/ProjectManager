@@ -12,5 +12,9 @@ def singleton(cls, *args, **kw):
 class ProjectManager:
     def __init__(self):
         self.users:Hashmap = Hashmap(100)
+        self.projects:Hashmap = Hashmap(100)
+        self.last_project_index = 0
     def getUsers(self):
         return self.users
+    def getProjects(self):
+        return self.projects

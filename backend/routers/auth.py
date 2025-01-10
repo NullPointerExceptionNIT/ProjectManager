@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from auth.auth_handler import authenticate_user, ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token, get_password_hash
 from ProjectManager import ProjectManager
 from schemas import Token, UserCreate, UserResponse
-from person import person as User
+from Person import Person as User
 
 pm = ProjectManager()
 

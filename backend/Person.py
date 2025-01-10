@@ -1,13 +1,19 @@
-class person:
+import enum
+
+class Role(enum.Enum):
+    normal_user = 1
+    member = 2
+    project_manager = 3
     
+class Person:
     def __init__(self , username : str, email : str,hashed_password:str):
         self.username = username
         self.email = email
         self.key = "username"
         self.hashed_password : object = hashed_password
         self.skills : list # witch data structure ????
-        self.Work_history : list # witch data structure ????
-        self.Different_roles : str #maneger or boss or user!!! 
+        self.experience : list # witch data structure ????
+        self.role : Role #maneger or boss or user!!! 
         
     # def updateName(self , new_name):
     #     self.name = new_name
