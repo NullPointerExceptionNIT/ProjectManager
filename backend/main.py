@@ -17,7 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 listasd = []
-app.include_router(user.router, prefix="/user")
+app.include_router(user.router, prefix="/users")
 app.include_router(auth.router, prefix="/auth")
 
 if __name__ == "__main__":
