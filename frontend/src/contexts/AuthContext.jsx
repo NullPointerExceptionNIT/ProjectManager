@@ -12,8 +12,12 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         if (token) {
             const getUser = async () => {
-                const user = await fetchUserProfile(token);
-                setUser(user);
+                try {
+                    const user = await fetchUserProfile(token);
+                    setUser(user);
+                } catch (error) {
+                    setUser(null);
+                }
             };
             getUser();
         }
@@ -26,20 +30,20 @@ const AuthProvider = ({ children }) => {
             localStorage.setItem('token', response.access_token);
             const userProfile = await fetchUserProfile(response.access_token);
             setUser(userProfile);
-            navigate('/profile');
+            navigate('/');
         }
     };
 
-    const register = async (username, email, password) => {
-        await registerUser({ username, email, password });
-        navigate('/login');
+    const register = async (username, email, password,skills,experience) => {
+        await registerUser({ username, email, password,skills,experience });
+        navigate('/Login');
     };
 
     const logout = () => {
         setToken(null);
         setUser(null);
         localStorage.removeItem('token');
-        navigate('/login');
+        navigate('/Login');
     };
 
     return (

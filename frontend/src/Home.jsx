@@ -1,7 +1,9 @@
 import mainlogo from './assets/Main.png'
 import './App.css'
 import Header from './Header'
+import { useNavigate } from 'react-router-dom'
 function Home() {
+    const navigate = useNavigate();
     return (
         <div>
             <Header />
@@ -17,7 +19,7 @@ function Home() {
                         <img src={mainlogo} alt="Task Manager" className="w-full h-auto max-w-md" />
                     </div>
                     <div className="absolute mb-10 bottom-20 left-10 w-full">
-                        <a href="SignUp.html" className="bg-red-300 text-black text-center px-4 py-2 rounded hover:bg-red-400 transition duration-200 w-64 inline-block">
+                        <a href="SignUp" className="bg-red-300 text-black text-center px-4 py-2 rounded hover:bg-red-400 transition duration-200 w-64 inline-block">
                             Let's Start
                         </a>
                     </div>

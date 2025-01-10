@@ -1,7 +1,28 @@
 import './App.css'
 import background from './assets/Background_For_Signup_Login.png'
 import Header from './Header'
+import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from './contexts/AuthContext'
 function Signup() {
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+        skills: '',
+        experience: '',
+    });
+    const { register, user } = useContext(AuthContext);
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        register(formData.username, formData.email, formData.password, formData.skills, formData.experience);
+    };
+    if (user != null)
+        navigate("/");
     return (
         <div style={{ backgroundImage: `url(${background})` }}>
             <Header />
@@ -13,14 +34,14 @@ function Signup() {
                         <div role="tabpanel" className="bg-white tab-content bg-base-100 border-base-300 rounded-box p-6">
                             <form className="text-black">
                                 <label htmlFor="name" >Name:</label>
-                                <input id="name" className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded" type="text" placeholder="username" name="username" required />
+                                <input id="name" className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded" type="text" placeholder="username" name="username" onChange={handleChange} required />
 
                                 <label htmlFor="email" className='color-black'>Email:</label>
-                                <input id="email" className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded" type="text" placeholder="username" name="username" required />
+                                <input id="email" className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded" type="text" placeholder="email" name="email" onChange={handleChange} required />
 
                                 <div className="mb-4 relative">
                                     <label htmlFor="name" className='color-black'>Password:</label>
-                                    <input id="password" className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded" type="password" placeholder="password" name="password" required />
+                                    <input id="password" className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded" type="password" placeholder="password" name="password" onChange={handleChange} required />
                                     <button id="togglePassword" type="button" className="absolute inset-y-0 right-3 mt-6 flex items-center text-gray-500">
                                         <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -42,13 +63,13 @@ function Signup() {
                             aria-label="Tab 2"
                         />
                         <div role="tabpanel" className="bg-white tab-content bg-base-100 border-base-300 rounded-box p-6" id="page2">
-                            <form className="text-black">
+                            <form className="text-black" onSubmit={handleSubmit}>
 
                                 <label htmlFor="skills" className='color-black'>Skills:</label>
-                                <input id="skills" className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded" type="text" placeholder="username" name="username" required />
+                                <input id="skills" className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded" type="text" placeholder="skills" name="skills" onChange={handleChange} required />
 
                                 <label htmlFor="experience className='color-black'">Experience:</label>
-                                <textarea id="experience" className="bg-white mb-4 resize-none form-control w-full p-2 border border-gray-300 rounded" name="experience" placeholder="Describe your work experience"></textarea>
+                                <textarea id="experience" className="bg-white mb-4 resize-none form-control w-full p-2 border border-gray-300 rounded" name="experience" onChange={handleChange} placeholder="Describe your work experience"></textarea>
 
                                 <button id="enterButton" className="bg-red-500 text-white rounded px-4 py-1 mt-3 w-full block text-center"><a href="ProjectPage.html">Enter</a></button>
                                 <h5 className="text-center mt-2 text-gray-700">Already a member? <a href="LoginPage.html" className="text-red-400">Login</a></h5>
