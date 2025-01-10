@@ -1,5 +1,4 @@
 import logo from './assets/project-manager-logo.png'
-import './App.css'
 import { AuthContext } from './contexts/AuthContext'
 import { useContext } from 'react';
 const Profile = () => {

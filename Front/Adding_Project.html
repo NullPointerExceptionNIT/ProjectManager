@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-red-100 h-screen overflow-hidden">
+
+    <header class="flex justify-between items-center bg-red-50 shadow pr-6">
+        <div class="flex items-center">
+            <img src="project-manager-logo.png" alt="Logo" class="h-20 mr-2"> 
+            <h1 class="font-bold text-xxl font-playwrite">Task Manager</h1>
+        </div>
+        <div class="relative">
+            <button id="menu-toggle" class="focus:outline-none text-2xl">☰</button>
+            <div id="dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg">
+                <img src="user.png" alt="user img" class="w-16 h-16 rounded-full mx-auto mt-2">
+                <div class="py-2 px-4 hover:bg-gray-200 cursor-pointer"><a href="ProfilePage.html">Profile</a></div>
+                <div class="py-2 px-4 hover:bg-gray-200 cursor-pointer">Add Project</div>
+                <div class="py-2 px-4 hover:bg-gray-200 cursor-pointer">Progress</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="p-6">
+        <div class="grid grid-cols-3 gap-4 mb-4">
+            <div>
+                <label for="project-name" class="block mb-1">Project Name</label>
+                <input type="text" id="project-name" placeholder="Enter project name" class="border border-gray-300 p-2 rounded w-full">
+            </div>
+            <div>
+                <label for="start-date" class="block mb-1">Start Date</label>
+                <input type="date" id="start-date" class="border border-gray-300 p-2 rounded w-full">
+            </div>
+            <div>
+                <label for="end-date" class="block mb-1">End Date</label>
+                <input type="date" id="end-date" class="border border-gray-300 p-2 rounded w-full">
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <label for="task-description" class="block mb-1">Task Description</label>
+            <textarea id="task-description" placeholder="Enter task description" class="mb-4 resize-none form-control h-60 w-full p-2 border border-gray-300 rounded"></textarea>
+        </div>
+
+        <div class="flex justify-between">
+            <a href="#" class="bg-blue-300 text-black px-4 py-2 rounded hover:bg-blue-400">Back</a>
+            <a href="#" class="bg-yellow-300 text-black px-4 py-2 rounded hover:bg-yellow-400">Add Project</a>
+        </div>
+    </main>
+
+</body>
+</html>
