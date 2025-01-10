@@ -1,5 +1,4 @@
 import logo from './assets/project-manager-logo.png'
-import './App.css'
 
 const Header =()=>{
     return(
