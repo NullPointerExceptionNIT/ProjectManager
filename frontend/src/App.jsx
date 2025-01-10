@@ -5,6 +5,7 @@ import Signup from './Signup';
 import Login from './Login';
 import ProjectPage from './ProjectPage';
 import ProfilePage from './ProfilePage';
+import AddProject from './AddProject';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/ProjectPage" element={<ProjectPage />} />
             <Route path="/ProfilePage" element={<ProfilePage />} />
+            <Route path="/AddProject" element={<AddProject/>} />
           </Routes>
       </AuthProvider>
     </Router>
