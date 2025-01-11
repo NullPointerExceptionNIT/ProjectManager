@@ -17,4 +17,7 @@ class HashmapW:
         return self.Hashmap.get(key)
         
     def exist(self , item):
-        return self.Hashmap.has(item.__dict__[item.__dict__["key"]])    
+        return self.Hashmap.has(item.__dict__[item.__dict__["key"]])
+    
+    # def get_all(self)
+        # return self.Hashmap.

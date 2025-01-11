@@ -161,6 +161,18 @@ class BinaryTree:
         print(tree.key, end=" ")
         BinaryTree.Print_InOrder(tree.rc)
     
+    def inorder(self):
+        inorder_list : list = []
+        BinaryTree.InOrder(self.__root ,inorder_list)
+        return inorder_list
+    @staticmethod
+    def InOrder(tree : TreeNode , lis : list):
+        if tree == None:
+            return
+        BinaryTree.InOrder(tree.lc , lis)
+        lis.append(tree.value)
+        BinaryTree.InOrder(tree.rc , lis)
+
     @staticmethod
     def create_tree(inorder: list, postorder: list,first_time=True):
         if not inorder or not postorder:
@@ -177,7 +189,7 @@ class BinaryTree:
         root.lc = BinaryTree.create_tree(inorder[:root_index], left_postorder,False)
 
         if first_time:
-            return Tree(root)
+            return BinaryTree(root)
         else:
             return root
 

@@ -3,9 +3,12 @@ from DataStructures.HashmapWrapper import HashmapW
 import datetime
 
 class Project:
+    key = "id"
     
-    def __init__(self , number):
-        self.task : HashmapW = HashmapW(number)
+    def __init__(self ,name,description):
+        self.id:int
+        self.name : str
+        self.task : HashmapW = HashmapW(100)
         self.description : str
         self.startTime = self.getLiveTime()
         self.endTime : str
