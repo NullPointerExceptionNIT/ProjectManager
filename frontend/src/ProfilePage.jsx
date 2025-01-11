@@ -213,7 +213,7 @@ function ProfilePage() {
 
           <div className="flex justify-between mt-6">
             <a
-              href="ProjectPage.html"
+              href="ProjectPage"
               className="bg-blue-300 text-black px-4 py-2 rounded hover:bg-blue-400"
             >
               Back

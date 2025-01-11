@@ -11,7 +11,7 @@ function ProjectPage() {
   const navigate = useNavigate();
   const retrieveProjects = async () => {
     try {
-      const response = await API.get("/projects/projects", {
+      const response = await API.get("/projects/", {
         headers: { Authorization: `Bearer ${token}` },
       });
       return response.data;

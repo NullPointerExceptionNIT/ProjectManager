@@ -6,27 +6,25 @@ from schemas import ProjectBase
 
 router = APIRouter()
 main_project = ProjectManager()
-def test ():
-        # if main_project.getAllProjectsAsList():  # اگر پروژه‌ای موجود است، نیازی به مقداردهی نیست
-        #     return  
+def test ():  
     project1 = Project() 
     project1.name = "ali " 
-    project1.description = "fjajfja" 
+    project1.description = "kos" 
     project1.endTime = "30 Tir 1402"
     project2 = Project() 
     project2.name = "amir and ali" 
-    project2.description = "wurouqwrg" 
+    project2.description = "kir" 
     project2.endTime = "20 Tir 145200"
     project3 = Project()
     project3.name = "hosein and javid" 
-    project3.description = "fuosafnknkasf" 
+    project3.description = "fuck" 
     project3.endTime = "19 Aug 2000"
     main_project.addNewProject( project = project1)
     main_project.addNewProject( project = project3)
     main_project.addNewProject( project = project2)
 
 test()
-@router.get("/projects", response_model = list[ProjectBase])
+@router.get("/", response_model = list[ProjectBase])
 async def show_project(current_user = Depends(get_current_active_ProjectManager)): 
     return  main_project.getAllProjectsAsList()
 

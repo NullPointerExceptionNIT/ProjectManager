@@ -46,3 +46,4 @@ class ProjectBase(BaseModel):
     id: int
     name: str
     description: Optional[str] = None
+    endTime : str
