@@ -1,5 +1,5 @@
-from DataStructures.Stackwrapper import stack as Stack
-from person import person
+from DataStructures.Stack import stackwrapper as Stack
+from .Person import Person
 import datetime
 
 
@@ -9,12 +9,12 @@ class Task:
     def __init__(self):
         self.id = 0
         self.topic: str
-        self.member: person
+        self.member: Person
         self.status: str = "ready"
         self.startTime: str
         self.endTime: str
         self.realendtime: datetime.datetime  # اگه دیر یارو انجام داد کار رو
-        self.chat: Stack = Stack()  # comment
+        self.comment: Stack = Stack()
 
     def change_status(self, new_status: str):
         self.status = new_status

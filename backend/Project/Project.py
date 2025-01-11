@@ -1,4 +1,4 @@
-from Task import Task
+from .Task import Task
 from DataStructures.Hashmap import Hashmap
 import datetime
 

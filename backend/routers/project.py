@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from ProjectManager import ProjectManager
+from Project.ProjectManager import ProjectManager
 from Project import Project
 from auth.auth_handler import get_current_active_ProjectManager
 from schemas import ProjectBase

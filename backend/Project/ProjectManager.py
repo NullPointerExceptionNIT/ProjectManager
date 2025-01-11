@@ -1,5 +1,6 @@
 from DataStructures.Hashmap import Hashmap
 from Project.Project import Project
+from DataStructures.Stack import stackwrapper as Stack
 
 
 def singleton(cls, *args, **kw):
@@ -19,6 +20,7 @@ class ProjectManager:
         self.users: Hashmap = Hashmap(100)
         self.projects: Hashmap = Hashmap(100)
         self.last_project_index = 0
+        self.chat: Stack = Stack()
 
     def getUsers(self):
         return self.users

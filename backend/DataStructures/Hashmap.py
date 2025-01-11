@@ -26,7 +26,7 @@ class Hashmap:
         return self.array[new_key].delete(key)
 
     def update(self, item):
-        key = getKey(value)
+        key = getKey(item)
         new_key = self.checker(key)
         return self.array[new_key].update(item)
 
