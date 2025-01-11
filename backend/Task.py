@@ -1,11 +1,11 @@
 from DataStructures.Stackwrapper import stack as Stack
-from person import person
+from Project.Person import Person
 import datetime
 
 class Task:
     def __init__(self):
         self.topic : str
-        self.member: person 
+        self.member: Person 
         self.status: str = "ready"
         self.startTime : str
         self.endTime : str
