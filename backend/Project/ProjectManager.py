@@ -32,3 +32,6 @@ class ProjectManager:
         self.last_project_index += 1
         project.id = self.last_project_index
         self.projects.add(project)
+
+    def getAllProjectsAsList(self) -> list[Project]:
+        return self.projects.show_all()

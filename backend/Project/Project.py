@@ -6,9 +6,10 @@ import datetime
 class Project:
     key = "id"
 
-    def __init__(self, number):
-        self.id = 0
-        self.task: Hashmap = Hashmap(number)
+    def __init__(self):
+        self.name : str
+        self.id : int
+        self.task: Hashmap = Hashmap(100)
         self.description: str
         self.startTime = self.getLiveTime()
         self.endTime: str

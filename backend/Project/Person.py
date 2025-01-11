@@ -10,13 +10,21 @@ class Role(enum.Enum):
 class Person:
     key = "username"
 
-    def __init__(self, username: str, email: str, hashed_password: str):
+    def __init__(
+        self,
+        username: str,
+        email: str,
+        hashed_password: str,
+        skills: str,
+        experience: str,
+        role: Role,
+    ):
         self.username = username
         self.email = email
         self.hashed_password: object = hashed_password
-        self.skills: list  # witch data structure ????
-        self.experience: list  # witch data structure ????
-        self.role: Role  # maneger or boss or user!!!
+        self.skills: list = skills  # witch data structure ????
+        self.experience: list = experience  # witch data structure ????
+        self.role: Role = role  # maneger or boss or user!!!
 
     # def updateName(self , new_name):
     #     self.name = new_name

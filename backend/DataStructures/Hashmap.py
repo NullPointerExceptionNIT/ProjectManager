@@ -38,8 +38,9 @@ class Hashmap:
         else:
             return False
 
-    # def show_all(self):
-    #     all_item :list
-    #     for i in range(self.size):
-    #         a = self.array[i]
-    #         a.
+    def show_all(self):
+        all_items = []
+        for tree in self.array:
+            if tree is not None:
+                all_items+=(tree.inorder())
+        return all_items

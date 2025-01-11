@@ -45,4 +45,4 @@ const fetchUserProfile = async (token) => {
     }
 };
 
-export { loginUser, registerUser, fetchUserProfile, API};
+export { loginUser, registerUser, fetchUserProfile, API };

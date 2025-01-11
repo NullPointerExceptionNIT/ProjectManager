@@ -85,7 +85,7 @@ async def get_current_active_user(current_user=Depends(get_current_user)):
 
 
 async def get_current_active_member(current_user: Person = Depends(get_current_user)):
-    if current_user.role < 1:
+    if current_user.role.value < 0:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="You Don't have permission to do this",
@@ -96,7 +96,7 @@ async def get_current_active_member(current_user: Person = Depends(get_current_u
 async def get_current_active_ProjectManager(
     current_user: Person = Depends(get_current_user),
 ):
-    if current_user.role < 2:
+    if current_user.role.value < 1:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="You Don't have permission to do this",
