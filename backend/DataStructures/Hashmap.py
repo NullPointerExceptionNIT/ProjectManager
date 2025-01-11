@@ -1,33 +1,35 @@
 from DataStructures.BinaryTree import BinaryTree
+from DataStructures.getKey import getKey
+
+
 class Hashmap:
-    def __init__(self , size): #size = مبنای کار 
+    def __init__(self, size):  # size = مبنای کار
         self.size = size
         self.array = [None] * size
         for i in range(size):
             self.array[i] = BinaryTree()
-                    
-    def checker(self , number):
+
+    def checker(self, number):
         return number.__hash__() % self.size
-    
-    def Add(self , value , key):
+
+    def add(self, item):
+        key = getKey(item)
         new_key = self.checker(key)
-        if value is None:
-            raise Exception("value is empty")
-        else:
-            self.array[new_key].insert(value , key)
-        
-    def get(self , key):
+        self.array[new_key].insert(item)
+
+    def get(self, key):
         new_key = self.checker(key)
         return self.array[new_key].find(key)
-    
-    def delete(self , key):
+
+    def delete(self, key):
         new_key = self.checker(key)
         return self.array[new_key].delete(key)
-    
-    def update(self ,value ,key):
+
+    def update(self, item):
+        key = getKey(value)
         new_key = self.checker(key)
-        return self.array[new_key].update(value ,key)
-    
+        return self.array[new_key].update(item)
+
     def has(self, key):
         new_key = self.checker(key)
         result = self.array[new_key].find(key)

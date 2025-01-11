@@ -9,15 +9,15 @@ from datetime import datetime, timedelta, timezone
 from sqlalchemy.orm import Session
 
 from schemas import TokenData
-from ProjectManager import ProjectManager
-from Person import Person
+from Project.ProjectManager import ProjectManager
+from Project.Person import Person
 
 pm = ProjectManager()
 
 # to get a JWT secret key run this command
 # openssl rand -hex 32
 
-#SECRET_KEY = os.environ["JWT_SECRET"]
+# SECRET_KEY = os.environ["JWT_SECRET"]
 SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
 
 ALGORITHM = "HS256"
@@ -28,12 +28,14 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 router = APIRouter()
 
+
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 
 def get_password_hash(password):
     return pwd_context.hash(password)
+
 
 def authenticate_user(users, username: str, password: str):
     user = users.get(username)
@@ -55,7 +57,9 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 
-async def get_current_user(token: str = Depends(oauth2_scheme), users = Depends(pm.getUsers)):
+async def get_current_user(
+    token: str = Depends(oauth2_scheme), users=Depends(pm.getUsers)
+):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -76,15 +80,25 @@ async def get_current_user(token: str = Depends(oauth2_scheme), users = Depends(
     return user
 
 
-async def get_current_active_user(current_user = Depends(get_current_user)):
+async def get_current_active_user(current_user=Depends(get_current_user)):
     return current_user
 
-async def get_current_active_member(current_user : Person = Depends(get_current_user)):
-    if (current_user.role<1):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="You Don't have permission to do this")
+
+async def get_current_active_member(current_user: Person = Depends(get_current_user)):
+    if current_user.role < 1:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="You Don't have permission to do this",
+        )
     return current_user
 
-async def get_current_active_ProjectManager(current_user : Person = Depends(get_current_user)):
-    if (current_user.role<2):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="You Don't have permission to do this")
+
+async def get_current_active_ProjectManager(
+    current_user: Person = Depends(get_current_user),
+):
+    if current_user.role < 2:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="You Don't have permission to do this",
+        )
     return current_user

@@ -1,10 +1,13 @@
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, field_validator
 from typing import Optional
-from Person import Role
+from Project.Person import Role
 from re import compile
 from fastapi.exceptions import HTTPException
 
-regex = compile("^(?!.*[.]{2})(?=(?:[a-zA-Z\\d]\\.?){6}.*@)[a-zA-Z\\d][\\da-zA-Z.]{4,}[a-zA-Z\\d]@(?:[\\da-zA-Z]+.)+[\\da-zA-Z]{2,}$")
+regex = compile(
+    "^(?!.*[.]{2})(?=(?:[a-zA-Z\\d]\\.?){6}.*@)[a-zA-Z\\d][\\da-zA-Z.]{4,}[a-zA-Z\\d]@(?:[\\da-zA-Z]+.)+[\\da-zA-Z]{2,}$"
+)
+
 
 class Token(BaseModel):
     access_token: str
@@ -21,16 +24,19 @@ class UserCreate(BaseModel):
     password: str
     skills: str
     experience: str
-    role : Role
-    @validator("email")
-    def EmailValidator(cls, email):
+    role: Role
+
+    @field_validator("email")
+    def EmailValidator(cls, email: str) -> str:
         if not regex.match(email):
-            raise HTTPException(422, detail=[{"msg":"Invalid Email"}])
+            raise HTTPException(422, detail=[{"msg": "Invalid Email"}])
         return email
+
 
 class UserResponse(BaseModel):
     username: str
     email: str | None = None
+
 
 class UserInDB(UserResponse):
     hashed_password: str
@@ -41,6 +47,7 @@ class ProductBase(BaseModel):
     price: float
     category: str
     description: Optional[str] = None
+
 
 class ProductCreate(ProductBase):
     pass
