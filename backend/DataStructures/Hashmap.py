@@ -37,3 +37,9 @@ class Hashmap:
             return True
         else:
             return False
+
+    # def show_all(self):
+    #     all_item :list
+    #     for i in range(self.size):
+    #         a = self.array[i]
+    #         a.

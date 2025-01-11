@@ -42,12 +42,7 @@ class UserInDB(UserResponse):
     hashed_password: str
 
 
-class ProductBase(BaseModel):
+class ProjectBase(BaseModel):
+    id: int
     name: str
-    price: float
-    category: str
     description: Optional[str] = None
-
-
-class ProductCreate(ProductBase):
-    pass

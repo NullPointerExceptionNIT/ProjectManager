@@ -1,4 +1,5 @@
 from DataStructures.Hashmap import Hashmap
+from Project.Project import Project
 
 
 def singleton(cls, *args, **kw):
@@ -24,3 +25,8 @@ class ProjectManager:
 
     def getProjects(self):
         return self.projects
+
+    def addNewProject(self, project: Project):
+        self.last_project_index += 1
+        project.id = self.last_project_index
+        self.projects.add(project)
