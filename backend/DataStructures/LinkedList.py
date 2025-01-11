@@ -3,15 +3,17 @@ class Node:
         self.Data = data
         self.Next = None
 
+
 class DoubleNode:
     def __init__(self, data):
         self.Data = data
         self.Next = None
         self.Prev = None
 
+
 class LinkedList:
     def __init__(self):
-        self.L = None # L is head  
+        self.L = None  # L is head
 
     def insert_at_front(self, value):
         new_node = Node(value)
@@ -30,7 +32,7 @@ class LinkedList:
 
     def is_empty(self):
         return self.L is None
-    
+
     def search(self, value):
         temp = self.L
         while temp:
@@ -38,14 +40,14 @@ class LinkedList:
                 return temp
             temp = temp.Next
         return "Data not found!"
-    
+
     def clear(self):
         temp = self.L
         while temp:
             amir = temp.Next
             temp = amir
         self.L = None
-        
+
     def size(self):
         temp = self.L
         size = 0
@@ -53,7 +55,7 @@ class LinkedList:
             size += 1
             temp = temp.Next
         return size
-    
+
     def delete_at_front(self):
         if self.is_empty():
             raise ValueError("LinkedList is empty!")
@@ -67,8 +69,8 @@ class LinkedList:
             temp = temp.Next
         # print("None")
 
-    def reverse_recursive(self, current = None , prev = None):
-        if current is None:  
+    def reverse_recursive(self, current=None, prev=None):
+        if current is None:
             current = self.L
         if current.Next is None:
             self.L = current
@@ -104,8 +106,8 @@ class LinkedList:
             temp = temp.Next
 
         return double_head
-    
-    def interleave_lists(list1 , list2 ):
+
+    def interleave_lists(list1, list2):
         new_list = LinkedList()
         temp1 = list1.L
         temp2 = list2.L
@@ -118,20 +120,20 @@ class LinkedList:
                 new_list.insert_at_end(temp2.Data)
                 temp2 = temp2.Next
         return new_list
-    
+
     def make_circular(self):
         if self.is_empty():
             raise ValueError("LinkedList is empty!")
         temp = self.L
         while temp.Next:
             temp = temp.Next
-        temp.Next = self.L  
-        
+        temp.Next = self.L
+
     def insert_at_end_circular(self, value):
         new_node = Node(value)
         if self.L is None:
             self.L = new_node
-            self.L.Next = self.L 
+            self.L.Next = self.L
         else:
             temp = self.L
             while temp.Next != self.L:
@@ -176,9 +178,9 @@ class DoubleLinkedList:
         while temp:
             print(temp.Data, end="_")
             temp = temp.Prev
-            
+
     @staticmethod
-    def search_and_count(list : LinkedList, value):
+    def search_and_count(list: LinkedList, value):
         temp = list.L
         index = 0
         count = 0
@@ -189,16 +191,16 @@ class DoubleLinkedList:
                     first_position = index
             temp = temp.Next
             index += 1
-        
+
         if count > 0:
             return f"Element found at index {first_position} with {count} occurrences."
         else:
             return "Data not found!"
-    
+
     @staticmethod
-    def split_even_odd(list : LinkedList):
+    def split_even_odd(list: LinkedList):
         even_list = LinkedList()
-        odd_list  = LinkedList()
+        odd_list = LinkedList()
         temp = list.L
         index = 0
         while temp:
@@ -212,9 +214,9 @@ class DoubleLinkedList:
         even_list.print_forward()
         print("Odd index list:")
         odd_list.print_forward()
-    
+
     @staticmethod
-    def merge_sorted_lists(list1 : LinkedList, list2 : LinkedList):
+    def merge_sorted_lists(list1: LinkedList, list2: LinkedList):
         new_list = LinkedList()
         temp1 = list1.L
         temp2 = list2.L
@@ -228,9 +230,9 @@ class DoubleLinkedList:
         while temp1:
             new_list.insert_at_end(temp1.Data)
             temp1 = temp1.Next
-        
+
         while temp2:
             new_list.insert_at_end(temp2.Data)
             temp2 = temp2.Next
-        
+
         return new_list

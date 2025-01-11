@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-from routers import user,auth,project
+from routers import user, auth, project
+
 
 app = FastAPI(debug=True)
 
@@ -16,7 +17,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-listasd = []
+
 app.include_router(user.router, prefix="/users")
 app.include_router(auth.router, prefix="/auth")
 app.include_router(project.router, prefix="/projects")
