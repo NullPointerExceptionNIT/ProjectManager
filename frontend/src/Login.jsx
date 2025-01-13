@@ -15,24 +15,20 @@ function Login() {
 
   const { login, user } = useContext(AuthContext);
 
-  // بررسی و هدایت به صفحه اصلی اگر کاربر وارد شده باشد
   useEffect(() => {
     if (user != null) {
-      navigate("/");
+      navigate("/ProjectPage");
     }
-  }, [user, navigate]); // فقط وقتی `user` یا `navigate` تغییر کند اجرا شود
+  }, [user, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // جلوگیری از رفرش شدن صفحه
-    const isSuccess = login(formData.username, formData.password); // بررسی لاگین
-    setfailed(!isSuccess); // اگر لاگین ناموفق بود، خطا نمایش داده شود
-    if (isSuccess) {
-      navigate("/ProjectPage"); // در صورت موفقیت، هدایت به صفحه پروژه‌ها
-    }
+    e.preventDefault();
+    const isSuccess = login(formData.username, formData.password);
+    setfailed(!isSuccess);
   };
 
   return (
