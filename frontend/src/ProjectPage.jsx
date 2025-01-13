@@ -28,14 +28,15 @@ function ProjectPage() {
 
   if (isLoading)
     return (
-      <div className="h-screen bg-red-200 flex items-center justify-center">
+      <div className="h-screen flex items-center justify-center">
         <p>Loading...</p>
+        <span className="loading loading-spinner loading-lg"></span>
       </div>
     );
 
   if (error)
     return (
-      <div className="h-screen bg-red-200 flex items-center justify-center">
+      <div className="h-screen flex items-center justify-center">
         <p>error!</p>
       </div>
     );
@@ -43,37 +44,40 @@ function ProjectPage() {
   if (all_project) {
     if (all_project.length === 0) {
       return (
-        <div className="h-screen bg-red-200 flex items-center justify-center">
+        <div className="h-screen flex items-center justify-center">
           <p>No projects available</p>
         </div>
       );
     }
     const projectElements = all_project.map((project) => (
-      <div key={project.id} className="bg-white p-4 rounded shadow">
-        <p>
-          <strong>Name:</strong> {project.name}
-        </p>
-        <p>
-          <strong>Description:</strong> {project.description}
-        </p>
-        <p>
-          <strong>End Time:</strong> {project.endTime}
-        </p>
-        <button className="bg-yellow-300 text-black px-4 py-2 rounded mt-2">
-          View
-        </button>
-        <button className="bg-blue-300 text-black px-4 py-2 rounded mt-2">
-          Edit
-        </button>
-        <button className="bg-red-300 text-black px-4 py-2 rounded mt-2">
-          Delete
-        </button>
-      </div>
+      <>
+        <div
+          key={project.id}
+          className="card bg-white   text-neutral-content pl-6 pr-6"
+        >
+          <div className="card-body items-center text-center text-black">
+            <p>
+              <strong>Name:</strong> {project.name}
+            </p>
+            <p>
+              <strong>Description:</strong> {project.description}
+            </p>
+            <p>
+              <strong>End Time:</strong> {project.endTime}
+            </p>
+            <div className="card-actions justify-center">
+              <button className="btn btn-success">View</button>
+              <button className="btn btn-warning">Edit</button>
+              <button className="btn btn-error">Delete</button>
+            </div>
+          </div>
+        </div>
+      </>
     ));
     return (
-      <div className="h-screen bg-red-200">
+      <div className="h-full bg-red-200">
         <Header />
-        <main className="p-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+        <main className="p-4 grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center text-center">
           {projectElements}
         </main>
       </div>
