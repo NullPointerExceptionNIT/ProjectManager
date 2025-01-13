@@ -35,6 +35,7 @@ function Signup() {
       try {
         msg = result.response.data.detail[0].msg;
       } catch (error) {
+        error.console(error)
         msg = "Unknown error";
       }
       seterror_message(msg);
