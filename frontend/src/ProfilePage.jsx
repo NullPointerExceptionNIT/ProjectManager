@@ -1,4 +1,4 @@
-import Header from "./header2";
+import Header from "./Header";
 import user from "./assets/user.png";
 import { API } from "./api";
 import { useQuery } from "react-query";
@@ -41,7 +41,7 @@ function ProfilePage() {
     );
   return (
     <div>
-      <div className="bg-red-100 h-screen">
+      <div className="bg-white min-h-screen">
         <Header />
         <main className="p-6">
           <div className="flex justify-left mb-8">
@@ -227,7 +227,7 @@ function ProfilePage() {
                   id="roles"
                   className="bg-white mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   required
-                  
+                  disabled
                 />
               </div>
             </div>
@@ -251,13 +251,13 @@ function ProfilePage() {
           <div className="flex justify-between mt-6">
             <a
               href="Projects"
-              className="bg-blue-300 text-black px-4 py-2 rounded hover:bg-blue-400"
+              className="bg-blue-400 text-black px-4 py-2 rounded hover:bg-blue-300"
             >
               Back
             </a>
             <button
               id="changeButton"
-              className="bg-yellow-300 text-black px-4 py-2 rounded hover:bg-yellow-400"
+              className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300"
             >
               Change
             </button>
