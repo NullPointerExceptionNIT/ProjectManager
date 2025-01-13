@@ -59,7 +59,7 @@ function Signup() {
             />
             <div
               role="tabpanel"
-              className="bg-white tab-content bg-base-100 border-base-300 rounded-box p-6"
+              className="bg-white tab-content border-base-300 rounded-box p-6"
             >
               <form className="text-black">
                 <label className="input input-bordered flex items-center gap-2 mb-5">
@@ -143,7 +143,7 @@ function Signup() {
             />
             <div
               role="tabpanel"
-              className="bg-white tab-content bg-base-100 border-base-300 rounded-box p-6"
+              className="bg-white tab-content border-base-300 rounded-box p-6"
               id="page2"
             >
               <form className="text-black" onSubmit={handleSubmit}>
