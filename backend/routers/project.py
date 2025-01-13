@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from Project.ProjectManager import ProjectManager
 from Project.Project import Project
 from auth.auth_handler import get_current_active_ProjectManager
@@ -6,41 +6,77 @@ from schemas import ProjectBase
 
 router = APIRouter()
 main_project = ProjectManager()
-def test ():  
-    project1 = Project() 
-    project1.name = "ali " 
-    project1.description = "kos" 
+
+
+def test():
+    project1 = Project()
+    project1.name = "ali "
+    project1.description = "koadasdasds"
     project1.endTime = "30 Tir 1402"
-    project2 = Project() 
-    project2.name = "amir and ali" 
-    project2.description = "kir" 
+    project2 = Project()
+    project2.name = "amir and ali"
+    project2.description = "asdsds"
     project2.endTime = "20 Tir 145200"
     project3 = Project()
-    project3.name = "hosein and javid" 
-    project3.description = "fuck" 
+    project3.name = "hosein and javid"
+    project3.description = "asdsadsadzc"
     project3.endTime = "19 Aug 2000"
-    main_project.addNewProject( project = project1)
-    main_project.addNewProject( project = project3)
-    main_project.addNewProject( project = project2)
+    main_project.addNewProject(project=project1)
+    main_project.addNewProject(project=project3)
+    main_project.addNewProject(project=project2)
+
 
 test()
-@router.get("/", response_model = list[ProjectBase])
-async def show_project(current_user = Depends(get_current_active_ProjectManager)): 
-    return  main_project.getAllProjectsAsList()
 
-@router.post("/create-project", response_model = ProjectBase)
-async def add_project(description : str, name : str ,current_user = Depends(get_current_active_ProjectManager)):
-    new_project = Project(name=name , description=description)
+
+@router.get("/", response_model=list[ProjectBase])
+async def show_project(current_user=Depends(get_current_active_ProjectManager)):
+    return main_project.getAllProjectsAsList()
+
+
+@router.get("/create-project", response_model=list[ProjectBase])
+async def add_project(
+    description: str, name: str, current_user=Depends(get_current_active_ProjectManager)
+):
+    new_project = Project()
+    new_project.description = description
+    new_project.name = name
     main_project.addNewProject(new_project)
-    return main_project
-     
+    return main_project.getAllProjectsAsList()
 
-@router.put("/update-project", response_model = ProjectBase)
-async def updtae_project(id : int, current_user = Depends(get_current_active_ProjectManager)):
-    main_project.getProjects().update(id)
-    return main_project.getProjects().get(id)
 
-@router.delete("/delete-projrct")
-async def delete_project(id_of_projects : int , current_user = Depends(get_current_active_ProjectManager)):
-    main_project.getProjects().delete(id_of_projects)
-    return ...
+@router.get("/project/{id}", response_model=ProjectBase or HTTPException)
+async def get_project(id: int, current_user=Depends(get_current_active_ProjectManager)):
+    if main_project.getproject(id):
+        return main_project.getproject(id)
+    else:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
+@router.put("/update-project/{id}", response_model=list[ProjectBase] or HTTPException)
+async def updthae_project(
+    id: int,
+    description: str,
+    name: str,
+    current_user=Depends(get_current_active_ProjectManager),
+):
+    current_project = main_project.getproject(id)
+    current_project.name = name
+    current_project.description = description
+    main_project.getProjects().update(current_project)
+    if main_project.getproject(id):
+        return main_project.getAllProjectsAsList()
+    else:
+        raise HTTPException(status_code=404, detail="Project not updated")
+
+
+@router.delete(
+    "/delete-projrct/{id}", response_model=list[ProjectBase] or HTTPException
+)
+async def delete_project(
+    id: int, current_user=Depends(get_current_active_ProjectManager)
+):
+    if not main_project.getProjects().delete(id):
+        return main_project.getAllProjectsAsList()
+    else:
+        raise HTTPException(status_code=404, detail="Project not deleted")

@@ -35,3 +35,6 @@ class ProjectManager:
 
     def getAllProjectsAsList(self) -> list[Project]:
         return self.projects.show_all()
+
+    def getproject(self, id: int) -> Project:
+        return self.projects.get(id)

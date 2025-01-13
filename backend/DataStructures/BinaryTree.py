@@ -213,11 +213,11 @@ class BinaryTree:
         else:
             return root
 
-        def update(self, value, key):
-            node = self.find_node(key)
-            if not node:
-                raise Exception(f"node with key {key} not found!")
-            node.value = value
+    def update(self, value, key):
+        node = self.find_node(key)
+        if not node:
+            raise Exception(f"node with key {key} not found!")
+        node.value = value
 
 
 if __name__ == "__main__":

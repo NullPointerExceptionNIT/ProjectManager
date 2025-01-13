@@ -28,7 +28,7 @@ class Hashmap:
     def update(self, item):
         key = getKey(item)
         new_key = self.checker(key)
-        return self.array[new_key].update(item)
+        return self.array[new_key].update(item, key)
 
     def has(self, key):
         new_key = self.checker(key)
@@ -42,5 +42,5 @@ class Hashmap:
         all_items = []
         for tree in self.array:
             if tree is not None:
-                all_items+=(tree.inorder())
+                all_items += tree.inorder()
         return all_items
