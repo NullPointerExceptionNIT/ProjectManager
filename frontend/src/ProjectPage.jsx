@@ -75,7 +75,7 @@ function ProjectPage() {
       </>
     ));
     return (
-      <div className="h-full bg-red-200">
+      <div className="max min-h-screen bg-red-200">
         <Header />
         <main className="p-4 grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center text-center">
           {projectElements}
