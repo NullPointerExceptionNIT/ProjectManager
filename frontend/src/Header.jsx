@@ -22,9 +22,7 @@ const Profile = () => {
           <a onClick={logout}>Logout</a>
         </li>
         <li>
-          <a href="Profile">
-            Profile
-          </a>
+          <a href="Profile">Profile</a>
         </li>
       </>
     );
@@ -35,20 +33,22 @@ const Header = () => {
       <div className="navbar bg-red-100">
         <div className="navbar-start pl-2">
           <div className="dropdown dropdown-hover">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h7"
-              />
-            </svg>
+            <div tabIndex={0} role="button" className="btn m-1 max-h:">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h7"
+                />
+              </svg>
+            </div>
             <ul
               tabIndex={0}
               className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
