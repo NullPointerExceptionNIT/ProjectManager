@@ -172,7 +172,7 @@ function Signup() {
                   id="enterButton"
                   className="bg-red-500 text-white rounded px-4 py-1 mt-3 w-full block text-center"
                 >
-                  <a href="ProjectPage">Enter</a>
+                  <a href="Projects">Enter</a>
                 </button>
                 <h5 className="text-center mt-2 text-gray-700">
                   Already a member?{" "}
