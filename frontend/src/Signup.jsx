@@ -1,5 +1,5 @@
 import "./App.css";
-import background from "./assets/Background_For_Signup_Login.png";
+import background from "./assets/login-signup.png";
 import Header from "./Header";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -43,18 +43,18 @@ function Signup() {
   };
   if (user != null) navigate("/");
   return (
-    <div style={{ backgroundImage: `url(${background})` }}>
+    <div style={{ backgroundImage: `url(${background})` }} className="min-h-screen max-h">
       <Header />
-      <div className="bg-cover bg-center h-screen flex justify-center items-center">
-        <div className="relative mb-20 bg-white bg-opacity-70 rounded-lg p-10 shadow-lg w-96">
-          <h2 className="text-red-400 text-center text-2xl mb-8">Sign Up</h2>
+      <div className="hero hero-content flex-col lg:flex-row-reverse">
+        <div className="bg-white rounded-lg p-10 shadow-2xl w-96">
+          <h2 className="text-black text-center font-bold mb-8">Sign Up</h2>
           <div role="tablist" className="tabs tabs-lifted">
             <input
               type="radio"
               name="my_tabs_2"
               role="tab"
               className="tab"
-              aria-label="Tab 1"
+              aria-label="Tab1"
               defaultChecked
             />
             <div
@@ -62,47 +62,50 @@ function Signup() {
               className="bg-white tab-content bg-base-100 border-base-300 rounded-box p-6"
             >
               <form className="text-black">
-                <label htmlFor="name">Name:</label>
-                <input
-                  id="name"
-                  className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded"
-                  type="text"
-                  placeholder="username"
-                  name="username"
-                  onChange={handleChange}
-                  required
-                />
-
-                <label htmlFor="email" className="color-black">
-                  Email:
+                <label className="input input-bordered flex items-center gap-2 mb-5">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70">
+                    <path
+                      d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                  </svg>
+                  <input type="text" className="grow" placeholder="Username" />
                 </label>
-                <input
-                  id="email"
-                  className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded"
-                  type="text"
-                  placeholder="email"
-                  name="email"
-                  onChange={handleChange}
-                  required
-                />
+
+                <label className="input input-bordered flex items-center gap-2 mb-5">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70">
+                    <path
+                      d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
+                    <path
+                      d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
+                  </svg>
+                  <input type="text" className="grow" placeholder="Email" />
+                </label>
 
                 <div className="mb-4 relative">
-                  <label htmlFor="name" className="color-black">
-                    Password:
+                  <label className="input input-bordered flex items-center gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      className="h-4 w-4 opacity-70">
+                      <path
+                        fillRule="evenodd"
+                        d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+                        clipRule="evenodd" />
+                    </svg>
+                    <input type="password" className="grow" placeholder="Password" />
                   </label>
-                  <input
-                    id="password"
-                    className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded"
-                    type="password"
-                    placeholder="password"
-                    name="password"
-                    onChange={handleChange}
-                    required
-                  />
                   <button
                     id="togglePassword"
                     type="button"
-                    className="absolute inset-y-0 right-3 mt-6 flex items-center text-gray-500"
+                    className="absolute inset-y-0 right-3 flex items-center text-gray-500"
                   >
                     <svg
                       id="eyeOpen"
@@ -136,7 +139,7 @@ function Signup() {
               name="my_tabs_2"
               role="tab"
               className="tab"
-              aria-label="Tab 2"
+              aria-label="Tab2"
             />
             <div
               role="tabpanel"
@@ -144,42 +147,26 @@ function Signup() {
               id="page2"
             >
               <form className="text-black" onSubmit={handleSubmit}>
-                <label htmlFor="skills" className="color-black">
-                  Skills:
-                </label>
                 <input
-                  id="skills"
-                  className="bg-white mb-4 form-control w-full p-2 border border-gray-300 rounded"
                   type="text"
-                  placeholder="skills"
-                  name="skills"
-                  onChange={handleChange}
-                  required
-                />
+                  placeholder="Skils"
+                  className="input input-bordered input-primary w-full max-w-xs mb-5" />
 
-                <label htmlFor="experience className='color-black'">
-                  Experience:
-                </label>
-                <textarea
-                  id="experience"
-                  className="bg-white mb-4 resize-none form-control w-full p-2 border border-gray-300 rounded"
-                  name="experience"
-                  onChange={handleChange}
-                  placeholder="Describe your work experience"
-                ></textarea>
+                <input
+                  type="text"
+                  placeholder="Write your experience here"
+                  className="input input-bordered input-primary w-full max-w-xs" />
 
-                <button
-                  id="enterButton"
-                  className="bg-red-500 text-white rounded px-4 py-1 mt-3 w-full block text-center"
-                >
-                  <a href="ProjectPage">Enter</a>
-                </button>
-                <h5 className="text-center mt-2 text-gray-700">
-                  Already a member?{" "}
-                  <a href="Login" className="text-red-400">
-                    Login
-                  </a>
-                </h5>
+                <div className="mt-2">
+                  <input className="m-1 btn hover:bg-yellow-400" type="radio" name="options" defaultChecked aria-label="Normal User" />
+                  <input className="m-1 btn hover:bg-yellow-400" type="radio" name="options" aria-label="Member" />
+                  <input className="m-1 btn hover:bg-yellow-400" type="radio" name="options" aria-label="Project Manager" />
+                </div>
+
+                <div className="form-control mt-6">
+                  <button className="btn btn-primary bg-yellow-500 hover:bg-yellow-400">Sign Up</button>
+                </div>
+
               </form>
               {failed && (
                 <div role="alert" className="alert alert-error">

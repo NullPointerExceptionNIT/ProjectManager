@@ -32,7 +32,7 @@ function Login() {
   };
 
   return (
-    <div style={{ backgroundImage: `url(${bg})` }} className=" min-h-screen max">
+    <div style={{ backgroundImage: `url(${bg})` }} className=" min-h-screen max-h">
       <Header />
       <div className="hero">
         <div className="hero-content flex-col lg:flex-row-reverse">
@@ -69,7 +69,7 @@ function Login() {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                  <button className="btn btn-primary bg-yellow-500 hover:bg-yellow-400">Login</button>
               </div>
             </form>
           </div>
