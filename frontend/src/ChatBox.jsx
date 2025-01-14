@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./Header";
 
-function chatBox() {
+function ChatBox() {
     return (
         <div>
             <Header />
@@ -34,4 +34,4 @@ function chatBox() {
     )
 }
 
-export default chatBox;
+export default ChatBox;

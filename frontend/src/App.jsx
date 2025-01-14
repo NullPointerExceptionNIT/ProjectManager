@@ -6,7 +6,7 @@ import Login from "./Login";
 import ProjectPage from "./ProjectPage";
 import ProfilePage from "./ProfilePage";
 import AddProject from "./AddProject";
-import chatBox from "./chatBox";
+import ChatBox from "./ChatBox";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <Route path="/Projects" element={<ProjectPage />} />
           <Route path="/Profile" element={<ProfilePage />} />
           <Route path="/AddProject" element={<AddProject />} />
-          <Route path="/chatBox" element={<chatBox />}/>
+          <Route path="/ChatBox" element={<ChatBox />}/>
         </Routes>
       </AuthProvider>
     </Router>
