@@ -24,6 +24,15 @@ const Profile = () => {
         <li>
           <a href="Profile">Profile</a>
         </li>
+        <li>
+          <a href="chatBox">Chat</a>
+        </li>
+        <li>
+          <a href="AddProject">Add Project</a>
+        </li>
+        <li>
+          <a href="Projects">Home</a>
+        </li>
       </>
     );
 };
