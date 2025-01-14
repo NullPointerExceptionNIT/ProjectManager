@@ -61,7 +61,7 @@ function AddProject() {
                             >
                                 Task Description
                             </label>
-                            <textarea id="task-description" placeholder="Enter task description" className="resize-none bg-white mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            <textarea id="task-description" placeholder="Enter task description" className="resize-none bg-white mt-1 block w-full px-3 py-8 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                         </div>
                         <div className="flex justify-between mt-6">
                             <a
