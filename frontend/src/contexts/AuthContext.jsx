@@ -35,8 +35,9 @@ const AuthProvider = ({ children }) => {
         return false
     };
 
-    const register = async (username, email, password,skills,experience) => {
-        await registerUser({ username, email, password,skills,experience });
+    const register = async (username, email, password,skills,experience,role) => {
+        role =parseInt(role)
+        await registerUser({ username, email, password,skills,experience ,role});
         navigate('/Login');
     };
 

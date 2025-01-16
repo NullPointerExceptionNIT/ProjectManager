@@ -36,6 +36,7 @@ class UserCreate(BaseModel):
 class UserResponse(BaseModel):
     username: str
     email: str | None = None
+    role :Role
 
 
 class UserInDB(UserResponse):

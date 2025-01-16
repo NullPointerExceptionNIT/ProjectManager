@@ -14,6 +14,7 @@ function Signup() {
     password: "",
     skills: "",
     experience: "",
+    role: 1,
   });
   const { register, user } = useContext(AuthContext);
   const handleChange = (e) => {
@@ -26,7 +27,8 @@ function Signup() {
       formData.email,
       formData.password,
       formData.skills,
-      formData.experience
+      formData.experience,
+      formData.role
     ).catch((result) => {
       console.log("asdasd");
       console.log(result);
@@ -80,6 +82,8 @@ function Signup() {
                         type="text"
                         className="grow"
                         placeholder="Username"
+                        name="username"
+                        onChange={handleChange}
                       />
                     </label>
 
@@ -93,7 +97,13 @@ function Signup() {
                         <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
                         <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
                       </svg>
-                      <input type="text" className="grow" placeholder="Email" />
+                      <input
+                        type="text"
+                        className="grow"
+                        placeholder="Email"
+                        name="email"
+                        onChange={handleChange}
+                      />
                     </label>
 
                     <div className="mb-4 relative">
@@ -114,6 +124,8 @@ function Signup() {
                           type="password"
                           className="grow"
                           placeholder="Password"
+                          name="password"
+                          onChange={handleChange}
                         />
                       </label>
                       <button
@@ -165,33 +177,43 @@ function Signup() {
                       type="text"
                       placeholder="Skils"
                       className="input input-bordered input-primary w-full max-w-xs mb-5"
+                      name="skills"
+                      onChange={handleChange}
                     />
 
                     <input
                       type="text"
                       placeholder="Write your experience here"
                       className="input input-bordered input-primary w-full max-w-xs"
+                      name="experience"
+                      onChange={handleChange}
                     />
 
                     <div className="mt-2">
                       <input
                         className="m-1 btn hover:bg-yellow-400"
                         type="radio"
-                        name="options"
+                        name="role"
                         defaultChecked
                         aria-label="Normal User"
+                        value={1}
+                        onChange={handleChange}
                       />
                       <input
                         className="m-1 btn hover:bg-yellow-400"
                         type="radio"
-                        name="options"
+                        name="role"
                         aria-label="Member"
+                        value={2}
+                        onChange={handleChange}
                       />
                       <input
                         className="m-1 btn hover:bg-yellow-400"
                         type="radio"
-                        name="options"
+                        name="role"
                         aria-label="Project Manager"
+                        value={3}
+                        onChange={handleChange}
                       />
                     </div>
 

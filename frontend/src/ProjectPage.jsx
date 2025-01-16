@@ -1,14 +1,15 @@
 import Header from "./Header";
 import "./App.css";
 import { API } from "./api";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { AuthContext } from "./contexts/AuthContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ProjectPage() {
+function ProjectContent() {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const retrieveProjects = async () => {
     try {
       const response = await API.get("/projects/", {
@@ -20,15 +21,28 @@ function ProjectPage() {
       throw error;
     }
   };
+  const deleteProject = (id) => {
+    useDeleteProject.mutate(id);
+  };
+  const useDeleteProject = useMutation({
+    onSuccess: async () => {
+      queryClient.invalidateQueries("projects");
+    },
+    mutationFn: async (id) => {
+      return API.delete("/projects/delete-projrct/" + id, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    },
+  });
   const {
     data: all_project,
     error,
     isLoading,
-  } = useQuery("postsData", retrieveProjects);
+  } = useQuery("projects", retrieveProjects);
 
   if (isLoading)
     return (
-      <div className="h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <p>Loading...</p>
         <span className="loading loading-spinner loading-lg"></span>
       </div>
@@ -36,7 +50,7 @@ function ProjectPage() {
 
   if (error)
     return (
-      <div className="h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <p>error!</p>
       </div>
     );
@@ -44,7 +58,7 @@ function ProjectPage() {
   if (all_project) {
     if (all_project.length === 0) {
       return (
-        <div className="h-screen flex items-center justify-center">
+        <div className="min-h-screen flex items-center justify-center">
           <p>No projects available</p>
         </div>
       );
@@ -68,7 +82,15 @@ function ProjectPage() {
             <div className="card-actions justify-center">
               <button className="btn btn-success">View</button>
               <button className="btn btn-warning">Edit</button>
-              <button className="btn btn-error">Delete</button>
+              <button
+                className="btn btn-error"
+                onClick={() => deleteProject(project.id)}
+              >
+                Delete
+                {deleteProject.isLoading && (
+                  <span className="loading loading-spinner loading-lg"></span>
+                )}
+              </button>
             </div>
           </div>
         </div>
@@ -76,7 +98,6 @@ function ProjectPage() {
     ));
     return (
       <div className="max min-h-screen bg-red-200">
-        <Header />
         <main className="p-4 grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center text-center">
           {projectElements}
         </main>
@@ -84,5 +105,14 @@ function ProjectPage() {
     );
   }
 }
+
+const ProjectPage = () => {
+  return (
+    <div className="min-h-screen h-fit w-screen">
+      <Header />
+      <ProjectContent />
+    </div>
+  );
+};
 
 export default ProjectPage;
