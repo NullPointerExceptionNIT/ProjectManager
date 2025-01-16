@@ -1,23 +1,34 @@
 from DataStructures.Stack import stackwrapper as Stack
+from DataStructures.Queue import PriorityQueue as Queue
+from DataStructures.LinkedList import LinkedList
 from .Person import Person
+from .Tasks import Tasks
 import datetime
+import enum
+
+
+class Status(enum.Enum):
+    ready = 0
+    in_progress = 1
+    done = 2
 
 
 class Task:
     key = "id"
 
     def __init__(self):
-        self.id = 0
         self.topic: str
         self.member: Person
-        self.status: str = "ready"
         self.startTime: str
-        self.endTime: str
-        self.realendtime: datetime.datetime  # اگه دیر یارو انجام داد کار رو
+        self.end_time: str
+        self.real_end_time: datetime.datetime
         self.comment: Stack = Stack()
+        self.status: Status = Status.ready
 
-    def change_status(self, new_status: str):
-        self.status = new_status
-        # change in database and front
+    def getStatusTask(self):
+        return self.status
 
-    # update chat = method that update database for chat
+    # def changeStatus(self, index: int, old_status: TaskStatus, new_status: TaskStatus):
+    #     task = self.tasks.__dict__[old_status.name].delete(index)
+    #     task.status = new_status
+    #     self.addTask(task)

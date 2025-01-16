@@ -85,3 +85,36 @@ class PriorityQueue:
     def makeNull(self):
         while self.front is not None:
             self.dequeue()
+
+    def search(self, value):
+        temp = self.front
+        while temp:
+            if temp.Data == value:
+                return temp
+            temp = temp.Next
+        return None
+
+    def update(self, old_value, new_value, new_priority):
+        temp = self.front
+        while temp:
+            if temp.Data == old_value:
+                temp.Data = new_value
+                temp.priority = new_priority
+                return True
+            temp = temp.Next
+        return False
+
+    def delete(self, value):
+        if self.front is None:
+            raise ValueError("Queue is empty")
+        if self.front.Data == value:
+            self.front = self.front.Next
+            return True
+        temp = self.front
+        while temp.Next:
+            if temp.Next.Data == value:
+                temp.Next = temp.Next.Next
+                return True
+            temp = temp.Next
+
+        return False
