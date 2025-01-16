@@ -89,7 +89,7 @@ class Ready:
         return List
     
     def add(self , item):
-        if self.task.insert_at_front(item)
+        if self.task.insert_at_front(item):
             return True
         return False
     
