@@ -7,11 +7,13 @@ import ProjectPage from "./ProjectPage";
 import ProfilePage from "./ProfilePage";
 import AddProject from "./AddProject";
 import ChatBox from "./ChatBox";
+import Header from "./Header";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
+        <Header/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Signup" element={<Signup />} />

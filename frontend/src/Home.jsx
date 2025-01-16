@@ -4,7 +4,6 @@ import Header from "./Header";
 function Home() {
   return (
     <div>
-      <Header />
       <div className="hero bg-white min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img

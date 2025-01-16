@@ -28,7 +28,6 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const isSuccess = login(formData.username, formData.password);
-    console.log(isSuccess);
     isSuccess.catch(()=>{setfailed(true);})
     
   };
@@ -48,7 +47,6 @@ function Login() {
           </div>
         </div>
       )}
-      <Header />
       <div className="hero pt-3">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">

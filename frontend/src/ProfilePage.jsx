@@ -42,7 +42,6 @@ function ProfilePage() {
   return (
     <div>
       <div className="bg-white min-h-screen">
-        <Header />
         <main className="p-6">
           <div className="flex justify-left mb-8">
             <div className="relative">
