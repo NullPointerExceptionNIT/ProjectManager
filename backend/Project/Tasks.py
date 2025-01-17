@@ -27,6 +27,20 @@ class inprogress:
     def update(self, item):
         pass
 
+    def find(self, index):
+        task = None
+        new_queue = Queue()
+        while self.task.size() >= 0:
+            temp = self.task.dequeue()
+            if temp.Data.id == index:
+                task = temp.Data
+            else:
+                new_queue.enqueue(temp, temp.priority)
+        self.task = new_queue
+        if task is None:
+            raise Exception(f"task not found!")
+        return task
+
 
 class Done:
     def __init__(self):
@@ -68,6 +82,22 @@ class Done:
             current = current.Next
         return False
 
+    def find(self, index):
+        task = None
+        new_stack = Stack()
+        while self.task.size() >= 0:
+            temp = self.task.pop()
+            if temp.Data.id == index:
+                task = temp.Data
+            else:
+                new_stack.push(temp)
+
+        new_stack.reverse()
+        self.task = new_stack
+        if task is None:
+            raise Exception(f"task not found!")
+        return task
+
     def update(self, id):
         pass
 
@@ -91,8 +121,8 @@ class Ready:
             return True
         return False
 
-    def delete(self, id):
-        pass
+    def find(self, index):
+        return self.task.find_and_remove(index)
 
     def update(self, id):
         pass
@@ -103,6 +133,9 @@ class Tasks:
         self.in_progress: inprogress = inprogress()
         self.done: Done = Done()
         self.ready: Ready = Ready()
+        self.index_of_inprogress: int = 0
+        self.index_of_done: int = 0
+        self.index_of_ready: int = 0
 
-    def search(self , key :int):
+    def search(self, key: int):
         pass
