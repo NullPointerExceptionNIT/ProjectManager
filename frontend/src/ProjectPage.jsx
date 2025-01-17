@@ -80,8 +80,8 @@ function ProjectContent() {
               <strong>End Time:</strong> {project.endTime}
             </p>
             <div className="card-actions justify-center">
-              <button className="btn btn-success">View</button>
-              <button className="btn btn-warning">Edit</button>
+              <button className="btn btn-success"><a href="Tasks">View</a></button>
+              <button className="btn btn-warning"><a href="EditProject">Edit</a></button>
               <button
                 className="btn btn-error"
                 onClick={() => deleteProject(project.id)}

@@ -1,8 +1,8 @@
 import Header from './Header';
 
-function AddProject() {
+function EditProject() {
     return (
-        <div className="bg-white min-h-screen flex flex-col">
+        <div className="bg-white h-screen flex flex-col">
             <Header />
             <div className="flex-grow items-center text-black">
                 <div className="m-3 justify-center mb-8">
@@ -13,7 +13,7 @@ function AddProject() {
                                     htmlFor="name"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    Name
+                                    Edit name
                                 </label>
                                 <input
                                     type="text"
@@ -27,7 +27,7 @@ function AddProject() {
                                     htmlFor="start-date"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    Start Date
+                                    Edit start Date
                                 </label>
                                 <input
                                     type="date"
@@ -41,7 +41,7 @@ function AddProject() {
                                     htmlFor="end-date"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    End Date
+                                    Edit end Date
                                 </label>
                                 <input
                                     type="date"
@@ -56,7 +56,7 @@ function AddProject() {
                                 htmlFor="task-description"
                                 className="block text-sm font-medium text-gray-700"
                             >
-                                Task Description
+                                Edit task Description
                             </label>
                             <textarea
                                 id="task-description"
@@ -78,11 +78,11 @@ function AddProject() {
                     id="changeButton"
                     className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300"
                 >
-                    Add
+                    Edit
                 </button>
             </div>
         </div>
     );
 }
 
-export default AddProject;
+export default EditProject;

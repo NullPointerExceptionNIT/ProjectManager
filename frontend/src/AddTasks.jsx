@@ -1,19 +1,20 @@
-import Header from './Header';
+import Header from "./Header";
+import "./App.css";
 
-function AddProject() {
+function AddTasks() {
     return (
         <div className="bg-white min-h-screen flex flex-col">
             <Header />
             <div className="flex-grow items-center text-black">
                 <div className="m-3 justify-center mb-8">
                     <form id="projectForm" className="space-y-6 text-black">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-5">
                             <div className="form-group">
                                 <label
                                     htmlFor="name"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    Name
+                                    Task Title
                                 </label>
                                 <input
                                     type="text"
@@ -24,28 +25,14 @@ function AddProject() {
                             </div>
                             <div className="form-group">
                                 <label
-                                    htmlFor="start-date"
+                                    htmlFor="person-name"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    Start Date
+                                    Person Name
                                 </label>
                                 <input
-                                    type="date"
-                                    id="start-date"
-                                    className="bg-white mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                                    required
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label
-                                    htmlFor="end-date"
-                                    className="block text-sm font-medium text-gray-700"
-                                >
-                                    End Date
-                                </label>
-                                <input
-                                    type="date"
-                                    id="end-date"
+                                    type="text"
+                                    id="person-name"
                                     className="bg-white mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                                     required
                                 />
@@ -85,4 +72,4 @@ function AddProject() {
     );
 }
 
-export default AddProject;
+export default AddTasks;

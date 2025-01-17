@@ -18,22 +18,34 @@ function Tasks() {
             </div>
             <div className="flex h-auto mt-1 bg-white">
                 <div className="task-box border p-4 flex-1 relative">
+                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
+                        <a href="EditTask">Edit</a>
+                    </button>
                     <h3 className="task-title font-bold">Task 1</h3>
                     <p className="task-description">This is the first task</p>
                     <p className="task-person">Assigned to: Vania</p>
-                    <button className="absolute bottom-1 right-4 bg-purple-300 text-purple-700 px-4 py-2 rounded">
+                    <button className="absolute bottom-1 right-4 bg-green-300 text-green-700 px-4 py-2 rounded">
                         Start
                     </button>
                 </div>
                 <div className="task-box border p-4 flex-1 relative">
+                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
+                        <a href="EditTask">Edit</a>
+                    </button>
                     <h3 className="task-title font-bold">Task 2</h3>
                     <p className="task-description">This is the second task</p>
                     <p className="task-person">Assigned to: Amir</p>
-                    <button className="absolute bottom-1 right-4 bg-blue-300 text-blue-700 px-4 py-2 rounded">
+                    <button className="absolute bottom-1 right-4 bg-green-300 text-green-700 px-4 py-2 rounded">
                         Finish
                     </button>
+                    <button className="absolute bottom-1 right-24 bg-green-300 text-green-700 px-4 py-2 rounded">
+                        Back
+                    </button>
                 </div>
-                <div className="task-box border p-4 flex-1">
+                <div className="task-box border p-4 flex-1 relative">
+                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
+                        <a href="EditTask">Edit</a>
+                    </button>
                     <h3 className="task-title font-bold">Task 3</h3>
                     <p className="task-description">This is the third task</p>
                     <p className="task-person">Assigned to: Javid</p>
@@ -41,22 +53,34 @@ function Tasks() {
             </div>
             <div className="flex h-auto mt-1 bg-white">
                 <div className="task-box border p-4 flex-1 relative">
+                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
+                        <a href="EditTask">Edit</a>
+                    </button>
                     <h3 className="task-title font-bold">Task 4</h3>
                     <p className="task-description">This is the 4th task</p>
                     <p className="task-person">Assigned to: Vania</p>
-                    <button className="absolute bottom-1 right-4 bg-purple-300 text-purple-700 px-4 py-2 rounded">
+                    <button className="absolute bottom-1 right-4 bg-green-300 text-green-700 px-4 py-2 rounded">
                         Start
                     </button>
                 </div>
                 <div className="task-box border p-4 flex-1 relative">
+                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
+                        <a href="EditTask">Edit</a>
+                    </button>
                     <h3 className="task-title font-bold">Task 5</h3>
                     <p className="task-description">This is the 5th task</p>
                     <p className="task-person">Assigned to: Amir</p>
-                    <button className="absolute bottom-1 right-4 bg-blue-300 text-blue-700 px-4 py-2 rounded">
+                    <button className="absolute bottom-1 right-4 bg-green-300 text-green-700 px-4 py-2 rounded">
                         Finish
                     </button>
+                    <button className="absolute bottom-1 right-24 bg-green-300 text-green-700 px-4 py-2 rounded">
+                        Back
+                    </button>
                 </div>
-                <div className="task-box border p-4 flex-1">
+                <div className="task-box border p-4 flex-1 relative">
+                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
+                        <a href="EditTask">Edit</a>
+                    </button>
                     <h3 className="task-title font-bold">Task 6</h3>
                     <p className="task-description">This is the 6th task</p>
                     <p className="task-person">Assigned to: Javid</p>

@@ -8,6 +8,9 @@ import ProfilePage from "./ProfilePage";
 import AddProject from "./AddProject";
 import ChatBox from "./ChatBox";
 import Tasks from "./Tasks";
+import AddTasks from "./AddTasks";
+import EditProject from "./EditProject";
+import EditTasks from "./EditTask";
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
           <Route path="/AddProject" element={<AddProject />} />
           <Route path="/ChatBox" element={<ChatBox />}/>
           <Route path="/Tasks" element={<Tasks/>}/>
+          <Route path="/AddTasks" element={<AddTasks/>}/>
+          <Route path="/EditProject" element={<EditProject/>} />
+          <Route path="/EditTask" element={<EditTasks/>} />
         </Routes>
       </AuthProvider>
     </Router>
