@@ -15,6 +15,29 @@ class LinkedList:
     def __init__(self):
         self.L = None  # L is head
 
+    def find_and_remove(self, index):
+        if index < 0:
+            raise IndexError("Index must be non-negative.")
+        if not self.L:
+            raise IndexError("Cannot remove from an empty list.")
+        if index == 0:
+            removed_data = self.L.Data
+            self.L = self.L.Next
+            return removed_data
+        current = self.L
+        prev = None
+        current_index = 0
+
+        while current and current_index < index:
+            prev = current
+            current = current.Next
+            current_index += 1
+        if not current:
+            raise IndexError("Index out of range.")
+        removed_data = current.Data
+        prev.Next = current.Next
+        return removed_data
+
     def insert_at_front(self, value):
         new_node = Node(value)
         new_node.Next = self.L

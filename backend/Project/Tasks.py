@@ -20,16 +20,26 @@ class inprogress:
         if self.task.enqueue(item, item.__dict__[item.key]):
             return True
         return False
-        
-    def delete(self , id : int):
-        if self.delete(id=id):
-            return True
-        return False
-        
-    def update(self , item):
-        # self.task.update()
-        #we have to update the Queue
+
+    def delete(self, id: int):
         pass
+
+    def update(self, item):
+        pass
+
+    def find(self, index):
+        task = None
+        new_queue = Queue()
+        while self.task.size() >= 0:
+            temp = self.task.dequeue()
+            if temp.Data.id == index:
+                task = temp.Data
+            else:
+                new_queue.enqueue(temp, temp.priority)
+        self.task = new_queue
+        if task is None:
+            raise Exception(f"task not found!")
+        return task
 
 
 class Done:
@@ -49,11 +59,13 @@ class Done:
         while temp_stack.size > 0:
             self.task.push(temp_stack.pop())
         return List
+
     def add(self, item):
         if self.task.push(item):
             return True
         return False
-    def delete(self , item):
+
+    def delete(self, item):
         if self.task.isempty():
             raise IndexError("Stack is empty.")
         prev = None
@@ -69,10 +81,26 @@ class Done:
             prev = current
             current = current.Next
         return False
-    
-    def update(self , id):
-        #it is hard
+
+    def find(self, index):
+        task = None
+        new_stack = Stack()
+        while self.task.size() >= 0:
+            temp = self.task.pop()
+            if temp.Data.id == index:
+                task = temp.Data
+            else:
+                new_stack.push(temp)
+
+        new_stack.reverse()
+        self.task = new_stack
+        if task is None:
+            raise Exception(f"task not found!")
+        return task
+
+    def update(self, id):
         pass
+
 
 class Ready:
     def __init__(self):
@@ -87,14 +115,27 @@ class Ready:
         while temp:
             List += temp.Data
         return List
-    
-    def add(self , item):
+
+    def add(self, item):
         if self.task.insert_at_front(item):
             return True
         return False
-    
-    def delete(self , id):
+
+    def find(self, index):
+        return self.task.find_and_remove(index)
+
+    def update(self, id):
         pass
-    
-    def update(self , id):
+
+
+class Tasks:
+    def __init__(self):
+        self.in_progress: inprogress = inprogress()
+        self.done: Done = Done()
+        self.ready: Ready = Ready()
+        self.index_of_inprogress: int = 0
+        self.index_of_done: int = 0
+        self.index_of_ready: int = 0
+
+    def search(self, key: int):
         pass
