@@ -17,7 +17,7 @@ class inprogress:
         return List
 
     def add(self, item):
-        if self.task.enqueue(item, item.__dict__[item.key]):
+        if self.task.enqueue(item, item.end_time):
             return True
         return False
 

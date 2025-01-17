@@ -3,10 +3,10 @@ from Project.Project import Project
 from DataStructures.Stack import stackwrapper as Stack
 
 
+instances = {}
 def singleton(cls, *args, **kw):
-    instances = {}
-
     def _singleton(*args, **kw):
+        global instances
         if cls not in instances:
             instances[cls] = cls(*args, **kw)
         return instances[cls]

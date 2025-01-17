@@ -17,9 +17,8 @@ class Task:
         self.id: int
         self.name: str
         self.member: Person
-        self.startTime: str
-        self.end_time: str
-        self.real_end_time: datetime.datetime
+        self.startTime: datetime.date
+        self.end_time: datetime.date
         self.comment: Stack = Stack()
         self.status: Status = Status.ready
 

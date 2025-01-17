@@ -1,6 +1,6 @@
 from DataStructures.BinaryTree import BinaryTree
 from DataStructures.getKey import getKey
-
+import hashlib
 
 class Hashmap:
     def __init__(self, size):  # size = مبنای کار
@@ -10,7 +10,7 @@ class Hashmap:
             self.array[i] = BinaryTree()
 
     def checker(self, number):
-        return number.__hash__() % self.size
+        return int(hashlib.md5(str(number).encode('utf-8')).hexdigest(),16) % self.size
 
     def add(self, item):
         key = getKey(item)
