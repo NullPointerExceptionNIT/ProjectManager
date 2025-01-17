@@ -5,8 +5,10 @@ import datetime
 
 
 class Project:
+    key = "id"
 
     def __init__(self):
+        self.id = 0
         self.tasks: Tasks = Tasks()
         self.name: str
         self.description: str

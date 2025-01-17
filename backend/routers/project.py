@@ -89,7 +89,6 @@ async def get_project(id: int, current_user=Depends(get_current_active_ProjectMa
 async def add_task(
     project_id: int,
     description: str,
-    person: Person,
     end_time: str,
     current_user=Depends(get_current_active_ProjectManager),
 ):

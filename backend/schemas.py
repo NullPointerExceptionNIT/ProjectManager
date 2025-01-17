@@ -1,6 +1,6 @@
 from pydantic import BaseModel, field_validator
 from typing import Optional
-from Project.Person import Role, Person
+from Project.Person import Role
 from re import compile
 from fastapi.exceptions import HTTPException
 
@@ -53,5 +53,4 @@ class ProjectBase(BaseModel):
 class TaskBase(BaseModel):
     id: int
     name: str
-    person: Optional[Person] = None
     endTime: str
