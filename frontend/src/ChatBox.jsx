@@ -5,7 +5,6 @@ function ChatBox() {
     return (
         <>
             <div>
-                <Header />
                 <div className="chat chat-start">
                     <div className="chat-header">
                         Obi-Wan Kenobi

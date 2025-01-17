@@ -30,8 +30,6 @@ function Signup() {
       formData.experience,
       formData.role
     ).catch((result) => {
-      console.log("asdasd");
-      console.log(result);
       setfailed(true);
       let msg;
       try {
@@ -46,7 +44,6 @@ function Signup() {
   if (user != null) navigate("/");
   return (
     <>
-      <Header />
       <div
         style={{ backgroundImage: `url(${background})` }}
         className="min-h-screen max-h"

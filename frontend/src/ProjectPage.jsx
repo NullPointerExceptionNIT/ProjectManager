@@ -1,25 +1,18 @@
 import Header from "./Header";
 import "./App.css";
-import { API } from "./api";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { AuthContext } from "./contexts/AuthContext";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 
 function ProjectContent() {
-  const { token } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { requestWithToken } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const retrieveProjects = async () => {
-    try {
-      const response = await API.get("/projects/", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      return response.data;
-    } catch (error) {
-      if (error.response.status == 401) navigate("/");
-      throw error;
-    }
+    const { data } = await requestWithToken({
+      url: "/projects/",
+      method: "get",
+    });
+    return data;
   };
   const deleteProject = (id) => {
     useDeleteProject.mutate(id);
@@ -29,9 +22,11 @@ function ProjectContent() {
       queryClient.invalidateQueries("projects");
     },
     mutationFn: async (id) => {
-      return API.delete("/projects/delete-projrct/" + id, {
-        headers: { Authorization: `Bearer ${token}` },
+      const response = await requestWithToken({
+        url: "/projects/delete-projrct/" + id,
+        method: "delete",
       });
+      return response;
     },
   });
   const {
@@ -109,7 +104,6 @@ function ProjectContent() {
 const ProjectPage = () => {
   return (
     <div className="min-h-screen h-fit w-screen">
-      <Header />
       <ProjectContent />
     </div>
   );

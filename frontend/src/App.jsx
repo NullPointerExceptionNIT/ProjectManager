@@ -11,11 +11,13 @@ import Tasks from "./Tasks";
 import AddTasks from "./AddTasks";
 import EditProject from "./EditProject";
 import EditTasks from "./EditTask";
+import Header from "./Header";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
+        <Header/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Signup" element={<Signup />} />
