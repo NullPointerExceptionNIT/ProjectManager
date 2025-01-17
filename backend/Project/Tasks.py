@@ -20,15 +20,11 @@ class inprogress:
         if self.task.enqueue(item, item.__dict__[item.key]):
             return True
         return False
-        
-    def delete(self , id : int):
-        if self.delete(id=id):
-            return True
-        return False
-        
-    def update(self , item):
-        # self.task.update()
-        #we have to update the Queue
+
+    def delete(self, id: int):
+        pass
+
+    def update(self, item):
         pass
 
 
@@ -49,11 +45,13 @@ class Done:
         while temp_stack.size > 0:
             self.task.push(temp_stack.pop())
         return List
+
     def add(self, item):
         if self.task.push(item):
             return True
         return False
-    def delete(self , item):
+
+    def delete(self, item):
         if self.task.isempty():
             raise IndexError("Stack is empty.")
         prev = None
@@ -69,10 +67,10 @@ class Done:
             prev = current
             current = current.Next
         return False
-    
-    def update(self , id):
-        #it is hard
+
+    def update(self, id):
         pass
+
 
 class Ready:
     def __init__(self):
@@ -87,14 +85,24 @@ class Ready:
         while temp:
             List += temp.Data
         return List
-    
-    def add(self , item):
+
+    def add(self, item):
         if self.task.insert_at_front(item):
             return True
         return False
-    
-    def delete(self , id):
+
+    def delete(self, id):
         pass
-    
-    def update(self , id):
+
+    def update(self, id):
+        pass
+
+
+class Tasks:
+    def __init__(self):
+        self.in_progress: inprogress = inprogress()
+        self.done: Done = Done()
+        self.ready: Ready = Ready()
+
+    def search(self , key :int):
         pass

@@ -1,6 +1,6 @@
 from pydantic import BaseModel, field_validator
 from typing import Optional
-from Project.Person import Role
+from Project.Person import Role, Person
 from re import compile
 from fastapi.exceptions import HTTPException
 
@@ -36,7 +36,7 @@ class UserCreate(BaseModel):
 class UserResponse(BaseModel):
     username: str
     email: str | None = None
-    role :Role
+    role: Role
 
 
 class UserInDB(UserResponse):
@@ -47,4 +47,11 @@ class ProjectBase(BaseModel):
     id: int
     name: str
     description: Optional[str] = None
-    endTime : Optional[str] = None
+    endTime: Optional[str] = None
+
+
+class TaskBase(BaseModel):
+    id: int
+    name: str
+    person: Optional[Person] = None
+    endTime: Optional[str] = None
