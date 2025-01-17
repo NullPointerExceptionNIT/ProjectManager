@@ -34,13 +34,14 @@ async def show_project(current_user=Depends(get_current_active_ProjectManager)):
     return main_project.getAllProjectsAsList()
 
 
-@router.get("/create-project", response_model=list[ProjectBase])
+@router.post("/create-project", response_model=list[ProjectBase])
 async def add_project(
-    description: str, name: str, current_user=Depends(get_current_active_ProjectManager)
+    project:ProjectBase, current_user=Depends(get_current_active_ProjectManager)
 ):
     new_project = Project()
-    new_project.description = description
-    new_project.name = name
+    new_project.description = project.description
+    new_project.name = project.name
+    new_project.endTime=project.endTime
     main_project.addNewProject(new_project)
     return main_project.getAllProjectsAsList()
 

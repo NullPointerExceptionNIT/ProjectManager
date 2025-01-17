@@ -44,7 +44,7 @@ class UserInDB(UserResponse):
 
 
 class ProjectBase(BaseModel):
-    id: int
+    id: Optional[int] = None
     name: str
-    description: Optional[str] = None
-    endTime : Optional[str] = None
+    description: str
+    endTime : str
