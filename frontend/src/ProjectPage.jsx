@@ -1,4 +1,3 @@
-import Header from "./Header";
 import "./App.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { AuthContext } from "./contexts/AuthContext";

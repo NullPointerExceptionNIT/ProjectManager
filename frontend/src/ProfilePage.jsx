@@ -1,4 +1,3 @@
-import Header from "./Header";
 import user from "./assets/user.png";
 import { API } from "./api";
 import { useQuery } from "react-query";

@@ -1,6 +1,5 @@
 import mainlogo from "./assets/Main.png";
 import "./App.css";
-import Header from "./Header";
 function Home() {
   return (
     <div>

@@ -1,10 +1,8 @@
-import Header from "./Header";
 import "./App.css";
 
 function EditTasks() {
     return (
         <div className="bg-white min-h-screen flex flex-col">
-            <Header />
             <div className="flex-grow items-center text-black">
                 <div className="m-3 justify-center mb-8">
                     <form id="projectForm" className="space-y-6 text-black">

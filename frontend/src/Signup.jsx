@@ -1,6 +1,5 @@
 import "./App.css";
 import background from "./assets/login-signup.png";
-import Header from "./Header";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./contexts/AuthContext";

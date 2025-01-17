@@ -1,10 +1,8 @@
-import Header from "./Header";
 import "./App.css";
 
 function Tasks() {
     return (
         <div className="bg-red-200 h-screen">
-            <Header />
             <div className="flex h-16">
                 <button className="bg-purple-300 text-purple-700 flex-1 px-4 py-2">
                     <span className="btm-nav-label">To do</span>

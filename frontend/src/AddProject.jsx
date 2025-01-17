@@ -1,10 +1,7 @@
-import Header from "./Header";
-import { API } from "./api";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { AuthContext } from "./contexts/AuthContext";
 import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Header from './Header';
 
 function AddProject() {
   const [formData, setFormData] = useState({
@@ -27,7 +24,7 @@ function AddProject() {
   const useCreatePost = useMutation({
     onSuccess: async () => {
       queryClient.invalidateQueries("projects");
-      // navigate("/Projects");
+      navigate("/Projects");
     },
     mutationFn: async () => {
       const response = await requestWithToken({
@@ -120,7 +117,6 @@ function AddProject() {
   );
     return (
         <div className="bg-white min-h-screen flex flex-col">
-            <Header />
             <div className="flex-grow items-center text-black">
                 <div className="m-3 justify-center mb-8">
                     <form id="projectForm" className="space-y-6 text-black">

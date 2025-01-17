@@ -2,7 +2,6 @@ import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import "./App.css";
 import bg from "./assets/login-signup.png";
-import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
