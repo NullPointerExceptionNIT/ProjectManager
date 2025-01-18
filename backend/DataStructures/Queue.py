@@ -60,12 +60,12 @@ class PriorityQueue:
     def enqueue(self, value, priority):
         new_node = PriorityQueue_Node(value, priority)
 
-        if self.front is None or self.front.priority < priority:
+        if self.front is None or self.front.priority > priority:
             new_node.Next = self.front
             self.front = new_node
         else:
             temp = self.front
-            while temp.Next and temp.Next.priority >= priority:
+            while temp.Next and temp.Next.priority <= priority:
                 temp = temp.Next
             new_node.Next = temp.Next
             temp.Next = new_node
