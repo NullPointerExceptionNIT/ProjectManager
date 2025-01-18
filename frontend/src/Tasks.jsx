@@ -70,7 +70,7 @@ function TaskContent() {
           </p>
           <div className="card-actions justify-center">
             <button className="btn bg-green-400 text-green-700">
-              <a href="Comment">Comment</a>
+              <a href="/Comment">Comment</a>
             </button>
             <button className="btn bg-yellow-400 text-yellow-700">
               <a href="/EditTask">Edit</a>

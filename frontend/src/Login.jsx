@@ -90,11 +90,6 @@ function Login() {
                     onChange={handleChange}
                   />
                 </label>
-                <label className="label mt-10">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
               </div>
               <div className="form-control mt-6">
                   <button className="btn btn-primary bg-yellow-500 hover:bg-yellow-400">Login</button>

@@ -91,7 +91,7 @@ function EditProject() {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  
+                  Edit project name
                 </label>
                 <input
                   type="text"
@@ -108,7 +108,7 @@ function EditProject() {
                   htmlFor="end-date"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  
+                  Edit end time
                 </label>
                 <input
                   type="date"
@@ -126,6 +126,7 @@ function EditProject() {
                 htmlFor="task-description"
                 className="block text-sm font-medium text-gray-700"
               >
+                Edit project description
               </label>
               <textarea
                 id="task-description"
