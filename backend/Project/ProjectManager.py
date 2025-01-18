@@ -1,7 +1,9 @@
 from DataStructures.Hashmap import Hashmap
 from Project.Project import Project
-from DataStructures.Stack import stackwrapper as Stack
-
+from DataStructures.Stack import Stack
+from DataStructures.Queue import PriorityQueue
+from DataStructures.LinkedList import LinkedList
+from Project.Task import Task,Status
 
 instances = {}
 def singleton(cls, *args, **kw):
@@ -20,7 +22,11 @@ class ProjectManager:
         self.users: Hashmap = Hashmap(100)
         self.projects: Hashmap = Hashmap(100)
         self.last_project_index = 0
-        self.chat: Stack = Stack()
+        self.chat:LinkedList = LinkedList()
+        self.ready: LinkedList = LinkedList()
+        self.in_progress: PriorityQueue = PriorityQueue()
+        self.done: Stack = Stack()
+
 
     def getUsers(self):
         return self.users
@@ -38,3 +44,12 @@ class ProjectManager:
 
     def getproject(self, id: int) -> Project:
         return self.projects.get(id)
+    
+    def addTask(self,task:Task):
+        
+        return
+    def getAllTasks(self):
+        l=dict()
+        for p in Status:
+            l[p.name]=list(self.__dict__[p.name])
+        return l

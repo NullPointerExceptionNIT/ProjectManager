@@ -1,6 +1,6 @@
 from .Tasks import Tasks
 from .Task import Task
-from DataStructures.Stack import stack as Stack
+from DataStructures.Stack import Stack
 import datetime
 
 

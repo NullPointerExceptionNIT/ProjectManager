@@ -5,9 +5,9 @@ import enum
 
 
 class Status(enum.Enum):
-    ready = 0
-    in_progress = 1
-    done = 2
+    ready = "ready"
+    in_progress = "in_progress"
+    done = "done"
 
 
 class Task:
@@ -18,8 +18,8 @@ class Task:
         self.name: str
         self.member: Person
         self.startTime: datetime.date
-        self.end_time: datetime.date
-        self.comment: Stack = Stack()
+        self.endTime: datetime.date
+        # self.comment
         self.status: Status = Status.ready
 
     # def changeStatus(self, index: int, old_status: TaskStatus, new_status: TaskStatus):

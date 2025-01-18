@@ -4,6 +4,7 @@ from Project.Person import Role
 from re import compile
 from fastapi.exceptions import HTTPException
 from datetime import date
+from Project import Task
 regex = compile(
     "^(?!.*[.]{2})(?=(?:[a-zA-Z\\d]\\.?){6}.*@)[a-zA-Z\\d][\\da-zA-Z.]{4,}[a-zA-Z\\d]@(?:[\\da-zA-Z]+.)+[\\da-zA-Z]{2,}$"
 )
@@ -53,4 +54,6 @@ class ProjectBase(BaseModel):
 class TaskBase(BaseModel):
     id: int
     name: str
+    startTime: date
     endTime: date
+    status : Task.Status

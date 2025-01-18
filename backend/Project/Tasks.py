@@ -1,5 +1,5 @@
 from DataStructures.LinkedList import LinkedList
-from DataStructures.Stack import stack as Stack
+from DataStructures.Stack import Stack
 from DataStructures.Queue import PriorityQueue as Queue
 
 
@@ -133,9 +133,6 @@ class Tasks:
         self.in_progress: inprogress = inprogress()
         self.done: Done = Done()
         self.ready: Ready = Ready()
-        self.index_of_inprogress: int = 0
-        self.index_of_done: int = 0
-        self.index_of_ready: int = 0
 
     def search(self, key: int):
         pass

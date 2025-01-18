@@ -4,7 +4,7 @@ class Node:
         self.Next = None
 
 
-class stack:
+class Stack:
     def __init__(self):
         self.size = 0
         self.top = None
@@ -86,8 +86,8 @@ class stack:
 
 class stackwrapper:
     def __init__(self):
-        self.Running_stack = stack()
-        self.store_stack = stack()
+        self.Running_stack = Stack()
+        self.store_stack = Stack()
 
     def add(self, value):
         self.Running_stack.push(value)
@@ -106,7 +106,7 @@ class stackwrapper:
             self.Running_stack.push(self.store_stack.pop())
 
 if __name__=='__main__':
-    a=stack()
+    a=Stack()
     a.push(1)
     a.push(2)
     a.push(3)
