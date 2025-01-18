@@ -80,7 +80,7 @@ function AddTasks() {
             onSubmit={handleSubmit}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-5">
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-700"
@@ -94,13 +94,13 @@ function AddTasks() {
                   className="bg-white mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   required
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label
                   htmlFor="person-name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Person Name
+                   Name
                 </label>
                 <input
                   type="text"
@@ -142,36 +142,21 @@ function AddTasks() {
               <div className="form-control">
                 <label className="label cursor-pointer">
                   <span className="label-text">To do</span>
-                  <input type="radio" name="radio-10" className="radio checked:bg-red-500" defaultChecked />
+                  <input type="radio" name="status" onChange={handleChange} value={"ready"} className="radio checked:bg-red-500" defaultChecked />
                 </label>
               </div>
               <div className="form-control">
                 <label className="label cursor-pointer">
                   <span className="label-text">In progress</span>
-                  <input type="radio" name="radio-10" className="radio checked:bg-blue-500" defaultChecked />
+                  <input type="radio" name="status" onChange={handleChange} value={"in_progress"} className="radio checked:bg-blue-500" />
                 </label>
               </div>
               <div className="form-control">
                 <label className="label cursor-pointer">
                   <span className="label-text">Finished</span>
-                  <input type="radio" name="radio-10" className="radio checked:bg-yellow-500" defaultChecked />
+                  <input type="radio" name="status" onChange={handleChange} value={"done"} className="radio checked:bg-yellow-500" />
                 </label>
               </div>
-            </div>
-            <div className="form-group">
-              <label
-                htmlFor="task-description"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Task Description
-              </label>
-              <textarea
-                id="task-description"
-                placeholder="Enter task description"
-                className="resize-none bg-white mt-1 block w-full px-3 py-8 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                name="status"
-                onChange={handleChange}
-              ></textarea>
             </div>
           </form>
         </div>

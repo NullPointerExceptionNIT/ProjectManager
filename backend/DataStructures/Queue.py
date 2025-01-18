@@ -55,7 +55,7 @@ class PriorityQueue:
             a = a.Next
 
     def add(self,task:Task):
-        self.enqueue(task,task.end_time)
+        self.enqueue(task,task.endTime)
 
     def enqueue(self, value, priority):
         new_node = PriorityQueue_Node(value, priority)
