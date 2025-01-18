@@ -46,8 +46,9 @@ function TaskContent() {
                     <p><strong>Description:</strong> {task.description}</p>
                     <p><strong>End Time:</strong> {task.endTime}</p>
                     <div className="card-actions justify-center">
-                        <button className="btn btn-warning bg-yellow-300 text-yellow-700"><a href="EditTask">Edit</a></button>
-                        <button className="btn btn-error bg-red-300 text-red-700" onClick={() => deleteTask(task.id)}>
+                        <button className="btn bg-green-400 text-green-700"><a href="Comment">Comment</a></button>
+                        <button className="btn bg-yellow-400 text-yellow-700"><a href="EditTask">Edit</a></button>
+                        <button className="btn bg-red-400 text-red-700" onClick={() => deleteTask(task.id)}>
                             Delete
                             {deleteTask.isLoading && <span className="loading loading-spinner loading-lg"></span>}
                         </button>

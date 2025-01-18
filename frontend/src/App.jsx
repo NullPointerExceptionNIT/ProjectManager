@@ -11,6 +11,7 @@ import Tasks from "./Tasks";
 import AddTasks from "./AddTasks";
 import EditProject from "./EditProject";
 import EditTasks from "./EditTask";
+import Comment from "./Comment";
 import Header from "./Header";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/AddTasks" element={<AddTasks/>}/>
           <Route path="/EditProject" element={<EditProject/>} />
           <Route path="/EditTask" element={<EditTasks/>} />
+          <Route path="/Comment" element={<Comment/>} />
         </Routes>
       </AuthProvider>
     </Router>
