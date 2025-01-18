@@ -11,10 +11,8 @@ class Status(enum.Enum):
 
 
 class Task:
-    key = "id"
 
     def __init__(self):
-        self.id: int
         self.name: str
         self.member: Person
         self.startTime: datetime.date

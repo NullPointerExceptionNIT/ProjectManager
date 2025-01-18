@@ -52,13 +52,12 @@ class ProjectBase(BaseModel):
 
 
 class TaskBase(BaseModel):
-    id: int
     name: str
     startTime: date
     endTime: date
     status : Task.Status
 
 class AllTask(BaseModel):
-    ready:List[Task]
-    in_progress:List[Task]
-    done:List[Task]
+    ready:List[TaskBase]
+    in_progress:List[TaskBase]
+    done:List[TaskBase]

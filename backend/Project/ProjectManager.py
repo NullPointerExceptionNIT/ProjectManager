@@ -26,9 +26,7 @@ class ProjectManager:
         self.projects: Hashmap = Hashmap(100)
         self.last_project_index = 0
         self.chat:LinkedList = LinkedList()
-        self.ready: LinkedList = LinkedList()
-        self.in_progress: PriorityQueue = PriorityQueue()
-        self.done: Stack = Stack()
+
 
 
     def getUsers(self):
@@ -48,25 +46,8 @@ class ProjectManager:
     def getproject(self, id: int) -> Project:
         return self.projects.get(id)
     
-    def addTask(self,task:Task):
-        self.__dict__[task.Status.name].add(task)
-        return
-
-    def getAllTasks(self):
-        l=dict()
-        for p in Status:
-            l[p.name]=list(self.__dict__[p.name])
-        return l
     def get_users(self) -> list[Person]:
         return self.users.get_users()
 
     def add_user(self, person: Person):
         self.users.add(person)
-
-    
-    def removeTask(self,index:int,status:Status):
-        self.__dict__[task.Status.name].pop(index)
-    
-    def changeTask(self,index:int,status:Status,new_task:Task):
-        old_task = self.__dict__[task.Status.name].pop(index)
-        self.addTask(new_task)

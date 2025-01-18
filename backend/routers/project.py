@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from Project.ProjectManager import ProjectManager
 from Project.Project import Project
 from Project.Person import Person
-from Project.Task import Task
+from Project.Task import Task,Status
 from auth.auth_handler import get_current_active_ProjectManager
-from schemas import ProjectBase, TaskBase
+from schemas import ProjectBase, TaskBase,AllTask
 
 router = APIRouter()
 main_project = ProjectManager()
@@ -99,7 +99,7 @@ async def get_all_task(
     return False
 
 
-@router.post("/project/{project_id}/create-task", response_model=TaskBase)
+@router.post("/project/{project_id}/create-task")
 async def add_task(
     task: TaskBase,
     project_id: int,
@@ -108,10 +108,28 @@ async def add_task(
     new_task = Task()
     new_task.name = task.name
     new_task.end_time = task.endTime
-    main_project.getproject(project_id).addNewTask(new_task)
-    return main_project.getproject(project_id)
+    new_task.status=task.status
+    main_project.getproject(project_id).addTask(new_task)
+    return task
 
 
 # @router.put("/project/{project_id}/update-task/{task_id}" , response_model=ProjectBase)
 # async def update_task(project_id : int , task_id : int ,new_description : str , current_user=Depends(get_current_active_ProjectManager)):
 #     return None
+
+
+@router.get("/project/{project_id}/tasks")
+async def alltasks(project_id: int,current_user=Depends(get_current_active_ProjectManager)):
+    return main_project.getproject(project_id).getAllTasks()
+
+@router.put("/project/{project_id}/edit-task")
+async def add_task(
+    taskIndex:int,
+    taskStatus:Status,
+    new_task: TaskBase,
+    project_id: int,
+    current_user=Depends(get_current_active_ProjectManager),
+):
+    project :Project = main_project.getproject(project_id)
+    project.changeTask(taskIndex,taskStatus,new_task)
+    return new_task
