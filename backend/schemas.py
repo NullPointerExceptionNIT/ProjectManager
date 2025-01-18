@@ -53,7 +53,6 @@ class ProjectBase(BaseModel):
 
 class TaskBase(BaseModel):
     name: str
-    startTime: date
     endTime: date
     status : Task.Status
 

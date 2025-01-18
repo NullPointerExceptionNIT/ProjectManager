@@ -10,9 +10,9 @@ function AddTasks() {
   const { requestWithToken } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState({
-    username: "",
-    title: "",
-    description: "",
+    name: "",
+    endTime: new Date(),
+    status :"done",
   });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,7 +28,7 @@ function AddTasks() {
       queryClient.invalidateQueries("Tasks");
       navigate("/Tasks");
     },
-    mutationFn: async (id) => {
+    mutationFn: async () => {
       const response = await requestWithToken({
         url: `/projects/project/${id}/create-task`,
         method: "post",
@@ -93,21 +93,19 @@ function AddTasks() {
                   name="title"
                   className="bg-white mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   required
-                  onChange={handleChange}
                 />
               </div>
               <div className="form-group">
                 <label
                   htmlFor="person-name"
                   className="block text-sm font-medium text-gray-700"
-                  onChange={handleChange}
                 >
                   Person Name
                 </label>
                 <input
                   type="text"
                   id="name"
-                  name="username"
+                  name="name"
                   className="bg-white mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   required
                   onChange={handleChange}
@@ -123,6 +121,22 @@ function AddTasks() {
                 {/* <option>Greedo</option> */}
                 {/* </select> */}
               </div>
+              <div className="form-group">
+                <label
+                  htmlFor="end-date"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  End Date
+                </label>
+                <input
+                  type="date"
+                  id="end-date"
+                  name="endTime"
+                  onChange={handleChange}
+                  className="bg-white mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  required
+                />
+              </div>
             </div>
             <div className="form-group">
               <label
@@ -135,7 +149,7 @@ function AddTasks() {
                 id="task-description"
                 placeholder="Enter task description"
                 className="resize-none bg-white mt-1 block w-full px-3 py-8 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                name="description"
+                name="status"
                 onChange={handleChange}
               ></textarea>
             </div>
