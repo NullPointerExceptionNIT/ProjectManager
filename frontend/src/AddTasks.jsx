@@ -124,6 +124,26 @@ function AddTasks() {
                 {/* </select> */}
               </div>
             </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-5 border rounded-l">
+              <div className="form-control">
+                <label className="label cursor-pointer">
+                  <span className="label-text">To do</span>
+                  <input type="radio" name="radio-10" className="radio checked:bg-red-500" defaultChecked />
+                </label>
+              </div>
+              <div className="form-control">
+                <label className="label cursor-pointer">
+                  <span className="label-text">In progress</span>
+                  <input type="radio" name="radio-10" className="radio checked:bg-blue-500" defaultChecked />
+                </label>
+              </div>
+              <div className="form-control">
+                <label className="label cursor-pointer">
+                  <span className="label-text">Finished</span>
+                  <input type="radio" name="radio-10" className="radio checked:bg-yellow-500" defaultChecked />
+                </label>
+              </div>
+            </div>
             <div className="form-group">
               <label
                 htmlFor="task-description"
