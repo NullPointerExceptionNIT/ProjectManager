@@ -28,12 +28,11 @@ function AddTasks() {
                                 >
                                     Person Name
                                 </label>
-                                <input
-                                    type="text"
-                                    id="person-name"
-                                    className="bg-white mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                                    required
-                                />
+                                <select className="select select-bordered w-full max-w-l ">
+                                    <option disabled selected>Who shot first?</option>
+                                    <option>Han Solo</option>
+                                    <option>Greedo</option>
+                                </select>
                             </div>
                         </div>
                         <div className="form-group">
@@ -54,7 +53,7 @@ function AddTasks() {
             </div>
             <div className="flex justify-between items-end p-4">
                 <a
-                    href="Projects"
+                    href="Tasks"
                     className="bg-blue-400 text-black px-4 py-2 rounded hover:bg-blue-300"
                 >
                     Back

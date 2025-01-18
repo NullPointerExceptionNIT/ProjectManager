@@ -59,8 +59,16 @@ function TaskContent() {
     };
 
     return (
-        <div className="bg-red-200 h-screen">
+        <div className="bg-red-200 min-h-screen max-w-screen">
             <div className="flex">
+                <div className="flex-1">
+                    <button className="bg-green-300 text-green-700 w-full px-4 py-2">
+                        <span className="btm-nav-label"><a href="AddTasks">Add Task</a></span>
+                    </button>
+                    <button className="bg-orange-300 text-orange-700 w-full px-4 py-2 mt-2">
+                        <span className="btm-nav-label"><a href="ChatBox">Chat</a></span>
+                    </button>
+                </div>
                 <div className="flex-1">
                     <button className="bg-purple-300 text-purple-700 w-full px-4 py-2">
                         <span className="btm-nav-label">To do</span>
