@@ -95,7 +95,7 @@ class BinaryTree:
         return 1 + BinaryTree.Get_Size(tree.lc) + BinaryTree.Get_Size(tree.rc)
 
     def get_height(self):
-        return BinaryTreen.Get_Height(self.__root)
+        return BinaryTree.Get_Height(self.__root)
 
     @staticmethod
     def Get_Height(tree):
