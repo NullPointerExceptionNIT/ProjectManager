@@ -191,6 +191,20 @@ class BinaryTree:
         lis.append(tree.value)
         BinaryTree.InOrder(tree.rc, lis)
 
+    def inorder_for_users(self):
+        inorder_list: list = []
+        BinaryTree.InOrderForUser(self.__root, inorder_list)
+        return inorder_list
+
+    @staticmethod
+    def InOrderForUser(tree: TreeNode, lis: list):
+        if tree == None:
+            return
+        BinaryTree.InOrderForUser(tree.lc, lis)
+        if tree.value.role.value != 1:
+            lis.append(tree.value)
+        BinaryTree.InOrderForUser(tree.rc, lis)
+
     @staticmethod
     def create_tree(inorder: list, postorder: list, first_time=True):
         if not inorder or not postorder:

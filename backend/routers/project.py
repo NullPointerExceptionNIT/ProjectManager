@@ -31,33 +31,39 @@ def test():
 # test()
 
 
-@router.get("/", response_model=list[ProjectBase])
+@router.get("/", response_model=list[ProjectBase] or HTTPException)
 async def show_project(current_user=Depends(get_current_active_ProjectManager)):
-    return main_project.getAllProjectsAsList()
+    try:
+        return main_project.getAllProjectsAsList()
+    except:
+        raise HTTPException(status_code=404, detail="Project not found")
 
 
-@router.post("/create-project", response_model=list[ProjectBase])
+@router.post("/create-project", response_model=list[ProjectBase] or HTTPException)
 async def add_project(
-    project:ProjectBase, current_user=Depends(get_current_active_ProjectManager)
+    project: ProjectBase, current_user=Depends(get_current_active_ProjectManager)
 ):
     new_project = Project()
     new_project.description = project.description
     new_project.name = project.name
-    new_project.endTime=project.endTime
-    main_project.addNewProject(new_project)
-    return main_project.getAllProjectsAsList()
+    new_project.endTime = project.endTime
+    try:
+        main_project.addNewProject(new_project)
+        return main_project.getAllProjectsAsList()
+    except:
+        raise HTTPException(status_code=404, detail="Project not added")
 
 
 @router.put("/update-project/{id}", response_model=list[ProjectBase] or HTTPException)
 async def update_project(
-    project:ProjectBase,
-    id :int,
+    project: ProjectBase,
+    id: int,
     current_user=Depends(get_current_active_ProjectManager),
 ):
     current_project = main_project.getproject(id)
     current_project.name = project.name
     current_project.description = project.description
-    current_project.endTime=project.endTime
+    current_project.endTime = project.endTime
     try:
         main_project.getProjects().update(current_project)
         return main_project.getAllProjectsAsList()
@@ -79,22 +85,29 @@ async def delete_project(
 
 @router.get("/project/{id}", response_model=ProjectBase or HTTPException)
 async def get_project(id: int, current_user=Depends(get_current_active_ProjectManager)):
-    if main_project.getproject(id):
+    try:
         return main_project.getproject(id)
-    else:
+    except:
         raise HTTPException(status_code=404, detail="Project not found")
 
 
-@router.post("/project/{project_id}/add-task", response_model=ProjectBase)
+@router.get("/project/{project_id}/", response_model=TaskBase or HTTPException)
+async def get_all_task(
+    project_id: int, current_user=Depends(get_current_active_ProjectManager)
+):
+    # return main_project.getproject(project_id).gettasks()
+    return False
+
+
+@router.post("/project/{project_id}/create-task", response_model=TaskBase)
 async def add_task(
+    task: TaskBase,
     project_id: int,
-    description: str,
-    end_time: str,
     current_user=Depends(get_current_active_ProjectManager),
 ):
     new_task = Task()
-    new_task.name = description
-    new_task.end_time = end_time
+    new_task.name = task.name
+    new_task.end_time = task.endTime
     main_project.getproject(project_id).addNewTask(new_task)
     return main_project.getproject(project_id)
 

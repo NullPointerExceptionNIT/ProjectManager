@@ -1,11 +1,14 @@
 from DataStructures.Hashmap import Hashmap
 from Project.Project import Project
+from Project.Person import Person
 from DataStructures.Stack import Stack
 from DataStructures.Queue import PriorityQueue
 from DataStructures.LinkedList import LinkedList
 from Project.Task import Task,Status
 
 instances = {}
+
+
 def singleton(cls, *args, **kw):
     def _singleton(*args, **kw):
         global instances
@@ -53,3 +56,8 @@ class ProjectManager:
         for p in Status:
             l[p.name]=list(self.__dict__[p.name])
         return l
+    def get_users(self) -> list[Person]:
+        return self.users.get_users()
+
+    def add_user(self, person: Person):
+        self.users.add(person)

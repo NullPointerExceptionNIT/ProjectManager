@@ -44,3 +44,10 @@ class Hashmap:
             if tree is not None:
                 all_items += tree.inorder()
         return all_items
+
+    def get_users(self):
+        all_items = []
+        for tree in self.array:
+            if tree is not None:
+                all_items += tree.inorder_for_users()
+        return all_items
