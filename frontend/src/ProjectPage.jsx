@@ -2,8 +2,10 @@ import "./App.css";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { AuthContext } from "./contexts/AuthContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ProjectContent() {
+  const navigate = useNavigate();
   const { requestWithToken } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const retrieveProjects = async () => {
@@ -33,7 +35,9 @@ function ProjectContent() {
     error,
     isLoading,
   } = useQuery("projects", retrieveProjects);
-
+  const handleEdit = (id) => {
+    navigate(`/EditProject/${id}`);
+  };
   if (isLoading)
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -75,7 +79,7 @@ function ProjectContent() {
             </p>
             <div className="card-actions justify-center">
               <button className="btn btn-success"><a href="Tasks">View</a></button>
-              <button className="btn btn-warning"><a href="EditProject">Edit</a></button>
+              <button className="btn btn-warning"><a onClick={() => handleEdit(project.id)}>Edit</a></button>
               <button
                 className="btn btn-error"
                 onClick={() => deleteProject(project.id)}

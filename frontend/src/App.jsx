@@ -29,7 +29,7 @@ function App() {
           <Route path="/ChatBox" element={<ChatBox />}/>
           <Route path="/Tasks" element={<Tasks/>}/>
           <Route path="/AddTasks" element={<AddTasks/>}/>
-          <Route path="/EditProject" element={<EditProject/>} />
+          <Route path="/EditProject/:id" element={<EditProject/>} />
           <Route path="/EditTask" element={<EditTasks/>} />
           <Route path="/Comment" element={<Comment/>} />
         </Routes>

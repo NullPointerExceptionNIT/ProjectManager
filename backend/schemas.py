@@ -3,7 +3,7 @@ from typing import Optional
 from Project.Person import Role
 from re import compile
 from fastapi.exceptions import HTTPException
-
+from datetime import date
 regex = compile(
     "^(?!.*[.]{2})(?=(?:[a-zA-Z\\d]\\.?){6}.*@)[a-zA-Z\\d][\\da-zA-Z.]{4,}[a-zA-Z\\d]@(?:[\\da-zA-Z]+.)+[\\da-zA-Z]{2,}$"
 )
@@ -47,10 +47,10 @@ class ProjectBase(BaseModel):
     id: Optional[int] = None
     name: str
     description: str
-    endTime: str
+    endTime: date
 
 
 class TaskBase(BaseModel):
     id: int
     name: str
-    endTime: str
+    endTime: date

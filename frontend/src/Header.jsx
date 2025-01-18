@@ -8,10 +8,10 @@ const Profile = () => {
     return (
       <>
         <li>
-          <a href="Login">Login</a>
+          <a href="/Login">Login</a>
         </li>
         <li>
-          <a href="SignUp">Sign up</a>
+          <a href="/SignUp">Sign up</a>
         </li>
       </>
     );
@@ -22,16 +22,16 @@ const Profile = () => {
           <a onClick={logout}>Logout</a>
         </li>
         <li>
-          <a href="Profile">Profile</a>
+          <a href="/Profile">Profile</a>
         </li>
         <li>
-          <a href="chatBox">Chat</a>
+          <a href="/chatBox">Chat</a>
         </li>
         <li>
-          <a href="AddProject">Add Project</a>
+          <a href="/AddProject">Add Project</a>
         </li>
         <li>
-          <a href="Projects">Home</a>
+          <a href="/Projects">Home</a>
         </li>
       </>
     );

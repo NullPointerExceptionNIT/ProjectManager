@@ -28,7 +28,7 @@ def test():
     main_project.addNewProject(project=project2)
 
 
-test()
+# test()
 
 
 @router.get("/", response_model=list[ProjectBase])
@@ -50,18 +50,18 @@ async def add_project(
 
 @router.put("/update-project/{id}", response_model=list[ProjectBase] or HTTPException)
 async def update_project(
-    id: int,
-    description: str,
-    name: str,
+    project:ProjectBase,
+    id :int,
     current_user=Depends(get_current_active_ProjectManager),
 ):
     current_project = main_project.getproject(id)
-    current_project.name = name
-    current_project.description = description
-    main_project.getProjects().update(current_project)
-    if main_project.getproject(id):
+    current_project.name = project.name
+    current_project.description = project.description
+    current_project.endTime=project.endTime
+    try:
+        main_project.getProjects().update(current_project)
         return main_project.getAllProjectsAsList()
-    else:
+    except:
         raise HTTPException(status_code=404, detail="Project not updated")
 
 
@@ -93,7 +93,6 @@ async def add_task(
     current_user=Depends(get_current_active_ProjectManager),
 ):
     new_task = Task()
-    new_task.member = person
     new_task.name = description
     new_task.end_time = end_time
     main_project.getproject(project_id).addNewTask(new_task)
