@@ -107,7 +107,7 @@ async def add_task(
 ):
     new_task = Task()
     new_task.name = task.name
-    new_task.end_time = task.endTime
+    new_task.endTime = task.endTime
     new_task.status=task.status
     main_project.getproject(project_id).addTask(new_task)
     return task

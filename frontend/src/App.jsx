@@ -28,7 +28,7 @@ function App() {
           <Route path="/AddProject" element={<AddProject />} />
           <Route path="/ChatBox" element={<ChatBox />}/>
           <Route path="/Tasks/:id" element={<Tasks/>}/>
-          <Route path="/AddTasks" element={<AddTasks/>}/>
+          <Route path="/AddTasks/:id" element={<AddTasks/>}/>
           <Route path="/EditProject/:id" element={<EditProject/>} />
           <Route path="/EditTask" element={<EditTasks/>} />
           <Route path="/Comment" element={<Comment/>} />
