@@ -1,5 +1,5 @@
 from pydantic import BaseModel, field_validator
-from typing import Optional
+from typing import Optional,List
 from Project.Person import Role
 from re import compile
 from fastapi.exceptions import HTTPException
@@ -57,3 +57,8 @@ class TaskBase(BaseModel):
     startTime: date
     endTime: date
     status : Task.Status
+
+class AllTask(BaseModel):
+    ready:List[Task]
+    in_progress:List[Task]
+    done:List[Task]

@@ -49,8 +49,9 @@ class ProjectManager:
         return self.projects.get(id)
     
     def addTask(self,task:Task):
-        
+        self.__dict__[task.Status.name].add(task)
         return
+
     def getAllTasks(self):
         l=dict()
         for p in Status:
@@ -61,3 +62,11 @@ class ProjectManager:
 
     def add_user(self, person: Person):
         self.users.add(person)
+
+    
+    def removeTask(self,index:int,status:Status):
+        self.__dict__[task.Status.name].pop(index)
+    
+    def changeTask(self,index:int,status:Status,new_task:Task):
+        old_task = self.__dict__[task.Status.name].pop(index)
+        self.addTask(new_task)
