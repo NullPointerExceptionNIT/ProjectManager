@@ -1,3 +1,5 @@
+from Project.Task import Task
+
 class Queue_Node:
     def __init__(self, data):
         self.Data = data
@@ -9,6 +11,7 @@ class Queue:
         self.front = None
         self.rear = None
         self.size = 0
+    
 
     def enqueue(self, value):
         self.size += 1
@@ -35,8 +38,8 @@ class Queue:
 
 
 class PriorityQueue_Node:
-    def __init__(self, value, priority):
-        self.Data = value
+    def __init__(self, data, priority):
+        self.Data = data
         self.priority = priority
         self.Next = None
 
@@ -44,6 +47,15 @@ class PriorityQueue_Node:
 class PriorityQueue:
     def __init__(self):
         self.front = None
+
+    def __iter__(self):
+        a = self.front
+        while a is not None:
+            yield a.Data
+            a = a.Next
+
+    def add(self,task:Task):
+        self.enqueue(task,task.end_time)
 
     def enqueue(self, value, priority):
         new_node = PriorityQueue_Node(value, priority)
@@ -64,6 +76,45 @@ class PriorityQueue:
 
         temp = self.front
         self.front = self.front.Next
+        return temp.Data
+
+    def pop(self, index):
+        if self.front is None:
+            raise ValueError("Queue is empty")
+        if index < 0:
+            raise IndexError("Index out of range")
+        if index == 0:
+            value = self.front.Data
+            self.front = self.front.Next
+            return value
+        temp = self.front
+        for _ in range(index - 1):
+            if temp.Next is None:
+                raise IndexError("Index out of range")
+            temp = temp.Next
+        
+        if temp.Next is None:
+            raise IndexError("Index out of range")
+
+        value = temp.Next.Data
+        temp.Next = temp.Next.Next
+        return value
+
+    def get(self, index):
+        if self.front is None:
+            raise ValueError("Queue is empty")
+        
+        if index < 0:
+            raise IndexError("Index out of range")
+
+        temp = self.front
+        for _ in range(index):
+            if temp is None:
+                raise IndexError("Index out of range")
+            temp = temp.Next
+        if temp is None:
+            raise IndexError("Index out of range")
+        
         return temp.Data
 
     def size(self):
@@ -118,3 +169,16 @@ class PriorityQueue:
             temp = temp.Next
 
         return False
+
+
+
+if __name__=='__main__':
+    a=PriorityQueue()
+    a.enqueue(1,1)
+    a.enqueue(2,1)
+    a.enqueue(3,1)
+    a.enqueue(2,5)
+    a.enqueue(0,5)
+    print(a.get(1))
+    print(a.pop(1))
+    print(list(a))

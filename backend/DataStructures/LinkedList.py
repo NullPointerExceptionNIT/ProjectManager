@@ -1,261 +1,148 @@
 class Node:
-    def __init__(self, data):
-        self.Data = data
-        self.Next = None
-
-
-class DoubleNode:
-    def __init__(self, data):
-        self.Data = data
-        self.Next = None
-        self.Prev = None
-
+    value:object
+    next_ptr:object
+    def __init__(self, value, next_ptr=None):
+        self.value = value
+        self.next_ptr = next_ptr
 
 class LinkedList:
-    def __init__(self):
-        self.L = None  # L is head
+    __first: Node | None = None
+    __last: Node | None = None
+    __size: int = 0
 
-    def find_and_remove(self, index):
-        if index < 0:
-            raise IndexError("Index must be non-negative.")
-        if not self.L:
-            raise IndexError("Cannot remove from an empty list.")
-        if index == 0:
-            removed_data = self.L.Data
-            self.L = self.L.Next
-            return removed_data
-        current = self.L
-        prev = None
-        current_index = 0
+    def __len__(self):
+        return self.__size
 
-        while current and current_index < index:
-            prev = current
-            current = current.Next
-            current_index += 1
-        if not current:
-            raise IndexError("Index out of range.")
-        removed_data = current.Data
-        prev.Next = current.Next
-        return removed_data
+    def __iter__(self):
+        node = self.__first
+        while node is not None:
+            yield node.value
+            node = node.next_ptr
+    
+    def add(self,data):
+        self.insert_at_end(data)
 
-    def insert_at_front(self, value):
-        new_node = Node(value)
-        new_node.Next = self.L
-        self.L = new_node
+    def insert_at_front(self, data):
+        new_node = Node(data, self.__first)
+        if self.__first is None:
+            self.__last = new_node
+        self.__first = new_node
+        self.__size += 1
 
-    def insert_at_end(self, value):
-        new_node = Node(value)
-        if self.L is None:
-            self.L = new_node
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        if self.__first is None:
+            self.__first = new_node
         else:
-            temp = self.L
-            while temp.Next:
-                temp = temp.Next
-            temp.Next = new_node
-
-    def is_empty(self):
-        return self.L is None
-
-    def search(self, value):
-        temp = self.L
-        while temp:
-            if temp.Data == value:
-                return temp
-            temp = temp.Next
-        return "Data not found!"
-
-    def clear(self):
-        temp = self.L
-        while temp:
-            amir = temp.Next
-            temp = amir
-        self.L = None
-
-    def size(self):
-        temp = self.L
-        size = 0
-        while temp:
-            size += 1
-            temp = temp.Next
-        return size
+            self.__last.next_ptr = new_node
+        self.__last = new_node
+        self.__size += 1
 
     def delete_at_front(self):
-        if self.is_empty():
-            raise ValueError("LinkedList is empty!")
-        temp = self.L
-        self.L = self.L.Next
+        if self.__first is None:
+            raise IndexError("Delete from an empty list.")
+        
+        node = self.__first
+        if self.__first == self.__last:
+            self.__last = None
+        self.__first = self.__first.next_ptr
+        self.__size -= 1
+        return node.value
+
+    def search(self, value):
+        node = self.__first
+        while node is not None:
+            if node.value == value:
+                return node
+            node = node.next_ptr
+        return None
 
     def print_forward(self):
-        temp = self.L
-        while temp:
-            print(temp.Data, end="-")
-            temp = temp.Next
-        # print("None")
+        for i in self:
+            print(i)
 
-    def reverse_recursive(self, current=None, prev=None):
-        if current is None:
-            current = self.L
-        if current.Next is None:
-            self.L = current
-            current.Next = prev
-            return
-        next_node = current.Next
-        current.Next = prev
-        self.reverse_recursive(next_node, current)
+    def clear(self):
+        self.__first = None
+        self.__last = None
+        self.__size = 0
+
+    def reverse_recursive(self):
+        self.__first = LinkedList.__reverse_recursive(self.__first)
+        return
+
+    @staticmethod
+    def __reverse_recursive(node):
+        if node is None or node.next_ptr is None:
+            return node
+        revnode = LinkedList.__reverse_recursive(node.next_ptr)
+        node.next_ptr.next_ptr = node
+        node.next_ptr = None
+        return revnode
 
     def reverse_non_recursive(self):
-        prev = None
-        current = self.L
-        while current:
-            next_node = current.Next
-            current.Next = prev
-            prev = current
+        if self.__first is None or self.__first.next_ptr is None:
+            return
+        current = self.__first.next_ptr
+        self.__first.next_ptr = None
+        next_node = current.next_ptr
+        while current is not None:
+            current.next_ptr = self.__first
+            self.__first = current
             current = next_node
-        self.L = prev
+            if next_node is not None:
+                next_node = next_node.next_ptr
 
-    def make_double(self):
-        if self.is_empty():
-            raise ValueError("LinkedList is empty!")
+    def pop(self, index):
+        if index < 0 or index >= self.__size:
+            raise IndexError("Index out of range.")
+        if index==0:
+            return self.delete_at_front()
+        prev = None
+        current = self.__first
+        for _ in range(index):
+            prev = current
+            current = current.next_ptr
 
-        double_head = DoubleNode(self.L.Data)
-        temp = self.L.Next
-        current_double = double_head
+        if current == self.__last:
+            self.__last = prev
 
-        while temp:
-            temp_double = DoubleNode(temp.Data)
-            current_double.Next = temp_double
-            temp_double.Prev = current_double
-            current_double = temp_double
-            temp = temp.Next
+        prev.next_ptr = current.next_ptr
+        self.__size -= 1
+        return current.value
 
-        return double_head
+    def get(self, index):
+        if index < 0 or index >= self.__size:
+            raise IndexError("Index out of range.")
+        
+        current = self.__first
+        for _ in range(index):
+            current = current.next_ptr
+        
+        return current.value
 
-    def interleave_lists(list1, list2):
-        new_list = LinkedList()
-        temp1 = list1.L
-        temp2 = list2.L
+    def get_node(self, value):
+        for node in self:
+            if node.value == value:
+                return node
+        return None
 
-        while temp1 or temp2:
-            if temp1:
-                new_list.insert_at_end(temp1.Data)
-                temp1 = temp1.Next
-            if temp2:
-                new_list.insert_at_end(temp2.Data)
-                temp2 = temp2.Next
-        return new_list
+    def get_index(self, value):
+        node = self.__first
+        n = 0
+        while node is not None:
+            if node.value == value:
+                return n
+            n += 1
+            node = node.next_ptr
+        return -1
 
-    def make_circular(self):
-        if self.is_empty():
-            raise ValueError("LinkedList is empty!")
-        temp = self.L
-        while temp.Next:
-            temp = temp.Next
-        temp.Next = self.L
+if __name__=='__main__':
+    a=LinkedList()
+    a.insert_at_end(1)
+    a.insert_at_end(2)
+    a.insert_at_end(3)
+    a.insert_at_end(4)
+    print(a.get(1))
+    print(a.pop(1))
+    print(list(a))
 
-    def insert_at_end_circular(self, value):
-        new_node = Node(value)
-        if self.L is None:
-            self.L = new_node
-            self.L.Next = self.L
-        else:
-            temp = self.L
-            while temp.Next != self.L:
-                temp = temp.Next
-            temp.Next = new_node
-            new_node.Next = self.L
-
-
-class DoubleLinkedList:
-    def __init__(self):
-        self.L = None
-
-    def insert_at_end(self, value):
-        new_node = DoubleNode(value)
-        if self.L is None:
-            self.L = new_node
-        else:
-            temp = self.L
-            while temp.Next:
-                temp = temp.Next
-            temp.Next = new_node
-            new_node.Prev = temp
-
-    def delete_at_end(self):
-        if self.L is None:
-            raise ValueError("DoubleLinkedList is empty!")
-        temp = self.L
-        if temp.Next is None:
-            self.L = None
-            return
-        while temp.Next:
-            temp = temp.Next
-        temp.Prev.Next = None
-
-    def backward_print(self):
-        if self.L is None:
-            print("empty")
-            return
-        temp = self.L
-        while temp.Next:
-            temp = temp.Next
-        while temp:
-            print(temp.Data, end="_")
-            temp = temp.Prev
-
-    @staticmethod
-    def search_and_count(list: LinkedList, value):
-        temp = list.L
-        index = 0
-        count = 0
-        while temp:
-            if temp.Data == value:
-                count += 1
-                if count == 1:
-                    first_position = index
-            temp = temp.Next
-            index += 1
-
-        if count > 0:
-            return f"Element found at index {first_position} with {count} occurrences."
-        else:
-            return "Data not found!"
-
-    @staticmethod
-    def split_even_odd(list: LinkedList):
-        even_list = LinkedList()
-        odd_list = LinkedList()
-        temp = list.L
-        index = 0
-        while temp:
-            if index % 2 == 0:
-                even_list.insert_at_end(temp.Data)
-            else:
-                odd_list.insert_at_end(temp.Data)
-            temp = temp.Next
-            index += 1
-        print("Even index list:")
-        even_list.print_forward()
-        print("Odd index list:")
-        odd_list.print_forward()
-
-    @staticmethod
-    def merge_sorted_lists(list1: LinkedList, list2: LinkedList):
-        new_list = LinkedList()
-        temp1 = list1.L
-        temp2 = list2.L
-        while temp1 and temp2:
-            if temp1.Data < temp2.Data:
-                new_list.insert_at_end(temp1.Data)
-                temp1 = temp1.Next
-            else:
-                new_list.insert_at_end(temp2.Data)
-                temp2 = temp2.Next
-        while temp1:
-            new_list.insert_at_end(temp1.Data)
-            temp1 = temp1.Next
-
-        while temp2:
-            new_list.insert_at_end(temp2.Data)
-            temp2 = temp2.Next
-
-        return new_list

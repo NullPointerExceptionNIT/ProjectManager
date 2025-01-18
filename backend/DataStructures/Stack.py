@@ -7,30 +7,60 @@ class Node:
 class stack:
     def __init__(self):
         self.size = 0
-        self.top = Node(None)
+        self.top = None
+
+    def __iter__(self):
+        a = self.top
+        while a is not None:
+            yield a.Data
+            a = a.Next
+    
+    def add(self, data):
+        self.push(data)
 
     def isempty(self):
-        temp = self.top
-        if temp.Data == None:
-            return True
-        return False
+        return self.top is None
 
     def push(self, value: object):
-        temp = self.top
         new_Item = Node(value)
-        new_Item.Next = temp
+        new_Item.Next = self.top
         self.top = new_Item
         self.size += 1
 
-    def pop(self):
-        temp = self.top
+    def pop(self, index=None):
         if self.isempty():
             raise IndexError("Pop from an empty stack.")
+        if index is None:
+            index = 0
+        if not (0 <= index < self.size):
+            raise IndexError("Index out of range.")
+        current = self.top
+        if index == 0:
+            value = current.Data
+            self.top = current.Next
         else:
-            value = temp.Data
-            self.top = temp.Next
-            self.size -= 1
-            return value
+            prev = None
+            for _ in range(index):
+                prev = current
+                current = current.Next
+            value = current.Data
+            prev.Next = current.Next
+        
+        self.size -= 1
+        return value
+
+    def get(self, index):
+        if self.isempty():
+            raise IndexError("Get from an empty stack.")
+        
+        if not (0 <= index < self.size):
+            raise IndexError("Index out of range.")
+        
+        current = self.top
+        for _ in range(index):
+            current = current.Next
+        
+        return current.Data
 
     def peek(self):
         temp = self.top
@@ -41,9 +71,7 @@ class stack:
 
     def empty(self):
         self.top = None
-
-    def size(self):
-        return self.size
+        self.size = 0
 
     def reverse(self):
         prev = None
@@ -76,3 +104,13 @@ class stackwrapper:
             raise Exception("We have nothing left")
         else:
             self.Running_stack.push(self.store_stack.pop())
+
+if __name__=='__main__':
+    a=stack()
+    a.push(1)
+    a.push(2)
+    a.push(3)
+    a.push(4)
+    print(a.get(1))
+    print(a.pop(1))
+    print(list(a))
