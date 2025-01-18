@@ -73,7 +73,7 @@ function EditTasks() {
             </div>
             <div className="flex justify-between items-end p-4">
                 <a
-                    href="Tasks"
+                    href="/Tasks"
                     className="bg-blue-400 text-black px-4 py-2 rounded hover:bg-blue-300"
                 >
                     Back

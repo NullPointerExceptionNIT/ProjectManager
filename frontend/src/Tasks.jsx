@@ -73,7 +73,7 @@ function TaskContent() {
               <a href="Comment">Comment</a>
             </button>
             <button className="btn bg-yellow-400 text-yellow-700">
-              <a href="EditTask">Edit</a>
+              <a href="/EditTask">Edit</a>
             </button>
             <button
               className="btn bg-red-400 text-red-700"
@@ -93,12 +93,12 @@ if (all_task){
         <div className="flex-1">
           <button className="bg-green-300 text-green-700 w-full px-4 py-2">
             <span className="btm-nav-label">
-              <a href="AddTasks">Add Task</a>
+              <a href="/AddTasks">Add Task</a>
             </span>
           </button>
           <button className="bg-orange-300 text-orange-700 w-full px-4 py-2 mt-2">
             <span className="btm-nav-label">
-              <a href="ChatBox">Chat</a>
+              <a href="/ChatBox">Chat</a>
             </span>
           </button>
         </div>
