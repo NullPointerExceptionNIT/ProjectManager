@@ -2,16 +2,17 @@ import "./App.css";
 import { useMutation, useQueryClient } from "react-query";
 import { AuthContext } from "./contexts/AuthContext";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AddTasks() {
+  const { id } = useParams();
   const navigate = useNavigate();
   const { requestWithToken } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState({
     username: "",
-    title:"",
-    description:"",
+    title: "",
+    description: "",
   });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,48 +28,48 @@ function AddTasks() {
       queryClient.invalidateQueries("Tasks");
       navigate("/Tasks");
     },
-    mutationFn: async () => {
+    mutationFn: async (id) => {
       const response = await requestWithToken({
-        url: "/projects/create-task????????",
+        url: `/projects/project/${id}/create-task`,
         method: "post",
         data: formData,
       });
       return response;
     },
   });
-//   const retrieveProjects = async () => {
-//     const { data } = await requestWithToken({
-//       url: "/users/alluser",
-//       method: "get",
-//     });
-//     return data;
-//   };
-//   const {
-//     data: all_user,
-//     error,
-//     isLoading,
-//   } = useQuery("AddTasks", retrieveProjects);
-//   if (isLoading)
-//     return (
-//       <div className="min-h-screen flex items-center justify-center">
-//         <p>Loading...</p>
-//         <span className="loading loading-spinner loading-lg"></span>
-//       </div>
-//     );
+  //   const retrieveProjects = async () => {
+  //     const { data } = await requestWithToken({
+  //       url: "/users/alluser",
+  //       method: "get",
+  //     });
+  //     return data;
+  //   };
+  //   const {
+  //     data: all_user,
+  //     error,
+  //     isLoading,
+  //   } = useQuery("AddTasks", retrieveProjects);
+  //   if (isLoading)
+  //     return (
+  //       <div className="min-h-screen flex items-center justify-center">
+  //         <p>Loading...</p>
+  //         <span className="loading loading-spinner loading-lg"></span>
+  //       </div>
+  //     );
 
-//   if (error)
-//     return (
-//       <div className="min-h-screen flex items-center justify-center">
-//         <p>error!</p>
-//       </div>
-//     );
-//     if (all_user) {
-//         if (all_user.length === 0) {
-//             return (
-//               <div className="min-h-screen flex items-center justify-center">
-//                 <p>No user available</p>
-//               </div>
-//             );}
+  //   if (error)
+  //     return (
+  //       <div className="min-h-screen flex items-center justify-center">
+  //         <p>error!</p>
+  //       </div>
+  //     );
+  //     if (all_user) {
+  //         if (all_user.length === 0) {
+  //             return (
+  //               <div className="min-h-screen flex items-center justify-center">
+  //                 <p>No user available</p>
+  //               </div>
+  //             );}
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <div className="flex-grow items-center text-black">
@@ -119,7 +120,7 @@ function AddTasks() {
                     user
                   </option>
                   {/* <option>Han Solo</option>  اسم ها  */}
-                  {/* <option>Greedo</option> */}
+                {/* <option>Greedo</option> */}
                 {/* </select> */}
               </div>
             </div>
@@ -158,7 +159,7 @@ function AddTasks() {
       </div>
     </div>
   );
-// }
+  // }
 }
 
 export default AddTasks;

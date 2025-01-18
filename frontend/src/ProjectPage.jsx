@@ -78,7 +78,7 @@ function ProjectContent() {
               <strong>End Time:</strong> {project.endTime}
             </p>
             <div className="card-actions justify-center">
-              <a className="btn btn-success" href="/Tasks">View</a>
+              <a className="btn btn-success" href={`/Tasks/${project?.id}`}>View</a>
               <a className="btn btn-warning" onClick={() => handleEdit(project.id)}>Edit</a>
               <button
                 className="btn btn-error"
