@@ -1,91 +1,94 @@
 import "./App.css";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { AuthContext } from "./contexts/AuthContext";
+import { useContext } from "react";
 
-function Tasks() {
+function TaskContent() {
+    const { requestWithToken } = useContext(AuthContext);
+    const queryClient = useQueryClient();
+
+    // تعریف تسک‌ها به صورت دستی
+    const tasks = {
+        todo: [
+            { id: 1, name: "Task 1", description: "This is the first task", endTime: "2023-10-01" },
+            { id: 2, name: "Task 2", description: "This is the second task", endTime: "2023-10-02" },
+        ],
+        inProgress: [
+            { id: 3, name: "Task 3", description: "This is the third task", endTime: "2023-10-03" },
+        ],
+        finished: [
+            { id: 4, name: "Task 4", description: "This is the fourth task", endTime: "2023-10-04" },
+        ],
+    };
+
+    const deleteTask = (id) => {
+        useDeleteTask.mutate(id);
+    };
+
+    const useDeleteTask = useMutation({
+        onSuccess: async () => {
+            queryClient.invalidateQueries("tasks");
+        },
+        mutationFn: async (id) => {
+            const response = await requestWithToken({
+                url: "/tasks/delete-task/" + id,
+                method: "delete",
+            });
+            return response;
+        },
+    });
+
+    const renderTasks = (taskList) => {
+        return taskList.map((task) => (
+            <div key={task.id} className="flex h-auto mt-1 bg-white">
+                <div className="task-box border p-4 flex-1 relative">
+                    <p><strong>Name:</strong> {task.name}</p>
+                    <p><strong>Description:</strong> {task.description}</p>
+                    <p><strong>End Time:</strong> {task.endTime}</p>
+                    <div className="card-actions justify-center">
+                        <button className="btn btn-warning bg-yellow-300 text-yellow-700"><a href="EditTask">Edit</a></button>
+                        <button className="btn btn-error bg-red-300 text-red-700" onClick={() => deleteTask(task.id)}>
+                            Delete
+                            {deleteTask.isLoading && <span className="loading loading-spinner loading-lg"></span>}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        ));
+    };
+
     return (
         <div className="bg-red-200 h-screen">
-            <div className="flex h-16">
-                <button className="bg-purple-300 text-purple-700 flex-1 px-4 py-2">
-                    <span className="btm-nav-label">To do</span>
-                </button>
-                <button className="bg-blue-300 text-blue-700 flex-1 px-4 py-2">
-                    <span className="btm-nav-label">In Progress</span>
-                </button>
-                <button className="bg-yellow-300 text-yellow-700 flex-1 px-4 py-2">
-                    <span className="btm-nav-label">Finished</span>
-                </button>
-            </div>
-            <div className="flex h-auto mt-1 bg-white">
-                <div className="task-box border p-4 flex-1 relative">
-                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
-                        <a href="EditTask">Edit</a>
+            <div className="flex">
+                <div className="flex-1">
+                    <button className="bg-purple-300 text-purple-700 w-full px-4 py-2">
+                        <span className="btm-nav-label">To do</span>
                     </button>
-                    <h3 className="task-title font-bold">Task 1</h3>
-                    <p className="task-description">This is the first task</p>
-                    <p className="task-person">Assigned to: Vania</p>
-                    <button className="absolute bottom-1 right-4 bg-green-300 text-green-700 px-4 py-2 rounded">
-                        Start
-                    </button>
+                    {renderTasks(tasks.todo)}
                 </div>
-                <div className="task-box border p-4 flex-1 relative">
-                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
-                        <a href="EditTask">Edit</a>
+                <div className="flex-1">
+                    <button className="bg-blue-300 text-blue-700 w-full px-4 py-2">
+                        <span className="btm-nav-label">In Progress</span>
                     </button>
-                    <h3 className="task-title font-bold">Task 2</h3>
-                    <p className="task-description">This is the second task</p>
-                    <p className="task-person">Assigned to: Amir</p>
-                    <button className="absolute bottom-1 right-4 bg-green-300 text-green-700 px-4 py-2 rounded">
-                        Finish
-                    </button>
-                    <button className="absolute bottom-1 right-24 bg-green-300 text-green-700 px-4 py-2 rounded">
-                        Back
-                    </button>
+                    {renderTasks(tasks.inProgress)}
                 </div>
-                <div className="task-box border p-4 flex-1 relative">
-                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
-                        <a href="EditTask">Edit</a>
+                <div className="flex-1">
+                    <button className="bg-yellow-300 text-yellow-700 w-full px-4 py-2">
+                        <span className="btm-nav-label">Finished</span>
                     </button>
-                    <h3 className="task-title font-bold">Task 3</h3>
-                    <p className="task-description">This is the third task</p>
-                    <p className="task-person">Assigned to: Javid</p>
-                </div>
-            </div>
-            <div className="flex h-auto mt-1 bg-white">
-                <div className="task-box border p-4 flex-1 relative">
-                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
-                        <a href="EditTask">Edit</a>
-                    </button>
-                    <h3 className="task-title font-bold">Task 4</h3>
-                    <p className="task-description">This is the 4th task</p>
-                    <p className="task-person">Assigned to: Vania</p>
-                    <button className="absolute bottom-1 right-4 bg-green-300 text-green-700 px-4 py-2 rounded">
-                        Start
-                    </button>
-                </div>
-                <div className="task-box border p-4 flex-1 relative">
-                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
-                        <a href="EditTask">Edit</a>
-                    </button>
-                    <h3 className="task-title font-bold">Task 5</h3>
-                    <p className="task-description">This is the 5th task</p>
-                    <p className="task-person">Assigned to: Amir</p>
-                    <button className="absolute bottom-1 right-4 bg-green-300 text-green-700 px-4 py-2 rounded">
-                        Finish
-                    </button>
-                    <button className="absolute bottom-1 right-24 bg-green-300 text-green-700 px-4 py-2 rounded">
-                        Back
-                    </button>
-                </div>
-                <div className="task-box border p-4 flex-1 relative">
-                    <button className="absolute top-1 right-4 bg-yellow-300 text-yellow-700 px-4 py-2 rounded">
-                        <a href="EditTask">Edit</a>
-                    </button>
-                    <h3 className="task-title font-bold">Task 6</h3>
-                    <p className="task-description">This is the 6th task</p>
-                    <p className="task-person">Assigned to: Javid</p>
+                    {renderTasks(tasks.finished)}
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Tasks;
+function Task() {
+    return (
+        <div>
+            <TaskContent />
+        </div>
+    );
+}
+
+export default Task;

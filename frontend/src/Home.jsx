@@ -14,7 +14,7 @@ function Home() {
             Boost employee satisfaction and efficiency with time-saving 
             automations and Task Manager features that handle repetitive tasks to free up agent workflows.
             </p>
-            <button className="btn btn-primary bg-yellow-400">Get Started</button>
+            <button className="btn btn-primary bg-yellow-400"><a href="Signup">Get Started</a></button>
           </div>
         </div>
       </div>
